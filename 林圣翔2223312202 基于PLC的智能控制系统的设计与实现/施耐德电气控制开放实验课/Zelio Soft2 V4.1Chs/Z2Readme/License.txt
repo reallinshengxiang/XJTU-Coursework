@@ -1,0 +1,52 @@
+LEC CONTROL 2003
+Schneider Electric conditions for the use of software.
+
+1. DEFINITIONS 
+1.1 REGISTERED USER: Schneider Electric, or third parties authorised by the said company as able to contract directly with the "LICENCEE". 
+1.2 "FIRST LICENCEE" shall be deemed to mean the initial address of the SOFTWARE and associated DOCUMENTATION. 
+1.3 'LICENCE" shall be deemed to mean the FIRST LICENCEE and, in case of transfer, the possessor of the licence for use. 
+1.4 "SOFTWARE" shall be deemed to mean the software sold by Schneider Electric, delivered under seal, referred to in the present conditions. 
+1.5 'DOCUMENTATION" shall be deemed to mean the documentation attached to the ORIGINAL SOFTWARE SUPPORT ( particularly the SOFTWARE description). 
+1.6 "ORIGINAL SUPPORT" shall be deemed to mean the medium on which the SOFTWARE has been recorded. lt bears the full references of the SOFTWARE (name , version/edition, target machine on which it may be executed,). 
+2. RIGHTS 
+2.1 The SOFTWARE licenced out by Schneider Electric, and its related DOCUMENTATION, are protected by copyright. Schneider Electric may have full ownership of these rights or they may belong to a third party having granted Schneider Electric an assignable licence. The present general conditions apply to all SOFTWARE licenced out by Schneider Electric except otherwise specifically stipulated and communicated to the LICENCEE. 
+2.2  Schneider Electric grants the LICENCEE the non-exclusive right, for an unlimited time and transferable under the conditions set out in clause 4.5, to use the SOFTWARE and related DOCUMENTATION, in compliance with the stipulations of the present document, on the hardware and for purposes set out in the SOFTWARE description. 
+2.3 Schneider Electric retains all its rights, and the licence to use the SOFTWARE and its DOCUMENTATION automatically ceases by normal operation of law should a breach of any one of the present stipulation occur. 
+3. LICENCE CERTIFICATE AND GUARANTEE 
+The delivery note mentioning the full specific references of the copy delivered and the invoice shall be considered as the licence certificate and guarantee as regards the FIRST LICENCEE .ln case of transfer of the licence, the NEW LICENCEE shall be required to apply the stipulations of clause 4.5 and return the "LICENCE AND GUARANTEE CERTIFICATE" annexed hereto to Schneider Electric suitably completed and signed. 
+4. PERMITTED USE 
+4.1 Each copy of the ORIGINAL SOFTWARE SUPPORT includes the right for use at a single work station (single piece of equipment and single user at one lime only); simultaneous multiple use is not allowed. Any form of specific use shall be submitted, whether to a personalised agreement or to a formal authorization edited by Schneider Electric. 
+4.2 Subject to the conditions set out herein after, copying the SOFTWARE in any form whatsoever, whether printed or readable by machine, is prohibited except for the setting-up of a back-up copy for use at a single work station. 
+4.3 Total or partial copying of DOCUMENTATION is prohibited. Copies may be provided against payment of the appropriate sums (give the full references of the SOFTWARE). 
+4,4 The LICENCEE or SOFTWARE user shall not damage, alter or adapt the SOFTWARE in any way, and 
+particularity by decompiling, disassembling or by creating derived programs, without prior authorisation. ln general, such authorisation must be obtained specifically from Schneider Electric; however, this authorisation may be included in the sale offer regarding certain SOFTWARE which it is intended that the LICENCEE totally or partially merges with other non-Schneider Electric Software (in such a case this authorisation is set out in the associated DOCUMENTATION
+Should the Licencee have obtained one of the above-mentioned authorisations, and except as otherwise stipulated thereon : 
+- the SOFTWARE may only be modified or merged with another program for use at single WORK STATION 
+- copyright notice(s) must be copied and included in all copies or modified versions of the SOFTWARE and in all parts merged with other programs and be clearly mentioned in the associated documentation, 
+-      all parts of the SOFTWARE thus modified or merged remain subject to the present conditions. 
+4.5 ln case of transfer of the rights to use the SOFTWARE (or, if necessary, a part of thereof, or a version modified or merge with other programs off the same type), the transferor must, at the same time. 
+- transfer all copies and modifications executed and all copies of DOCUMENTATION in his possession, or destroy any copy not returned, 
+- abandon ail rights concerning this copy of the SOFTWARE, 
+ - satisfy himself that the new user undertakes to observe all "Schneider Electric's CONDITIONS FOR USE OF SOFTWARE" 
+- provide documentary evidence of this transfer by sending the original invoice 
+
+5. GUARANTEE 
+5.1 Insofar as this concession is subject to the stipulations of article 4 of Decree 78-464 dated 24th March 1978, it is stipulated that the present requirements concerning the guarantee by Schneider Electric in no way deprive the purchaser or any legal rights to any guarantee which might require the professional vendor to guarantee the purchaser against all consequences of any fault or hidden defects of the article or service provided. 
+5.2 Schneider Electric guarantees the SUPPORTS on which it supplies the SOFTWARE against any defect as to the material or fabrication for a duration of ninety (90) days from the date of delivery set out on the invoice or delivery note handed over to the FIRST LICENCEE by Schneider Electric or an approved distributor. 
+5.3 The aforementioned guarantee and any recourse as described hereinafter supersedes any other oral or written guarantee, whether expressly or implicitly given. 
+6.RECOURSE 
+The sole responsibility of Schneider Electric and the only recourses are set out below
+- the guarantee shall be satisfied by replacement: Schneider Electric (or ils approved distributor having ensured initial installation) shall replace the ORIGINAL SUPPORTS not complying with the aforesaid guarantee, subject to their having been used in compliance with the stipulations and usual practice in these matters and that they have been returned within a delay of 90 (ninety) days from date of their availability accompanied by a copy of the corresponding documentary justification. 
+Schneider Electric may, if it so wishes ,limit this guarantee to reimbursement of the purchase price. 
+- Schneider Electric may in no circumstances be considered responsible for any indirect prejudice caused, such as loss of profits, loss of orders, any commercial problems or actions against the LICENCEE by a third party which might result from use of the SOFTWARE or from an incapacity to use the SOFTWARE, and this, even if Schneider Electric or such a third party duly approved by Schneider Electric has been advised of the possibility of such prejudice occurring. 
+ 
+
+7. NON-Schneider Electric SOFTWARE USED UNDER LICENCE FROM Schneider Electric
+7.1 The use, assignability, guarantee concerning this SOFTWARE, the associated services, the copyright and patents, the nature and the scope of LICENSEES' recourses are subject to the individual conditions of each Schneider Electric supplier and not to the present conditions. However, the stipulations of clauses 2.1, 2.3, 4.1, 4.2, 4.3, 4.4, 4.6, 5, 6, 8, apply and take precedence over any stipulation specific to any of its suppliers. 
+7.2 The conditions specific to each of these suppliers may be obtained from Schneider Electric on request. 
+8. TERMINATION 
+The licence remains in force until terminated. Termination takes place on one of the following : 
+- written notice to terminate given to Schneider Electric by the LICENSEE, 
+- by operation of law when the LICENSEE does not comply with one of the stipulations in the present document. 
+On termination, the LICENSEE shall be required to destroy the SOFTWARE which might exist in any form and under its responsibility. This shall include : the ORIGINAL SOFTWARE SUPPORT, all copies, adaptations, total or par1ial mergers which have been made and all associated DOCUMENTATION. The original version of the present LICENCE was in French and has been translated into English language the French version of this document shall be valid in cases of legal disputes. 
+This licence is governed by French Law; in case of dispute between the parties resulting herefrom, either in its interpretation or in execution of the present contract, all hearings shall take place at the Tribunal de Commerce of NANTERRE. 

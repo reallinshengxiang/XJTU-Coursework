@@ -1,0 +1,94 @@
+;
+; stm_usb2ser.inf
+; 
+; Copyright (c) 2006  STMicroelectronics
+; 
+; Virtual COM Port Driver for USB to Serial bridge 
+;
+ 
+ 
+ 
+[Version] 
+Signature = "$Windows NT$" 
+Class=Ports
+ClassGUID={4d36e978-e325-11ce-bfc1-08002be10318} 
+Provider=%STM% 
+DriverVer= 13/02/2006,4.6.1
+
+[DestinationDirs] 
+USB2SER12.Files.x86_12 = 12 
+
+[SourceDisksNames.x86]
+0=%Desc_x860%
+
+[SourceDisksNames.ia64]
+
+
+[SourceDisksFiles.x86]
+usb2ser.sys=0
+
+[SourceDisksFiles.ia64]
+
+
+[Manufacturer] 
+%STM%=STM
+
+[STM]
+%USB2SER12Desc%=USB2SER12_Inst,USB\VID_0483&PID_7270
+
+[USB2SER12_Inst.ntx86] 
+AddReg = USB2SER12.AddReg.x86 
+CopyFiles = USB2SER12.Files.x86_12 
+
+
+[USB2SER12_Inst.ntx86.Services] 
+AddService = usb2ser,0x00000002,USB2SER12_Service_Instx86, 
+
+[USB2SER12_Service_Instx86] 
+ServiceType = %SERVICE_KERNEL_DRIVER% 
+StartType = %SERVICE_DEMAND_START% 
+ErrorControl = %SERVICE_ERROR_NORMAL% 
+ServiceBinary = %12%\usb2ser.sys 
+
+
+[USB2SER12.AddReg.x86] 
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,usb2ser.sys
+HKR,,EnumPropPages32,,"MsPorts.dll,SerialPortPropPageProvider"
+HKR,,PortSubClass,1,01
+
+
+[USB2SER12.Files.x86_12] 
+usb2ser.sys
+
+[USB2SER12_EventLog_Inst] 
+AddReg = USB2SER12_EventLog_Inst.AddReg 
+ 
+[USB2SER12_EventLog_Inst.AddReg] 
+HKR,,EventMessageFile,%REG_EXPAND_SZ%,"%%SystemRoot%%\System32\IoLogMsg.dll" 
+HKR,,TypesSupported,%REG_DWORD%,7
+
+
+[Strings] 
+
+;  *******Localizable Strings******* 
+STM= "STMicroelectronics" 
+Desc_x860= "STMicroelectronics VCPD Drivers Disk" 
+USB2SER12Desc= "USB -> COM Driver Service" 
+
+;  *******Non Localizable Strings******* 
+
+SERVICE_BOOT_START = 0x0 
+SERVICE_SYSTEM_START = 0x1 
+SERVICE_AUTO_START = 0x2 
+SERVICE_DEMAND_START = 0x3 
+SERVICE_DISABLED = 0x4 
+
+SERVICE_KERNEL_DRIVER = 0x1 
+SERVICE_ERROR_IGNORE = 0x0 
+SERVICE_ERROR_NORMAL = 0x1 
+SERVICE_ERROR_SEVERE = 0x2 
+SERVICE_ERROR_CRITICAL = 0x3 
+
+REG_EXPAND_SZ = 0x00020000 
+REG_DWORD = 0x00010001 
