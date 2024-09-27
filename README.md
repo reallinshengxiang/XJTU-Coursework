@@ -1,1 +1,1 @@
-# XJTU-Coursework
+# Integrated Engineering Training
