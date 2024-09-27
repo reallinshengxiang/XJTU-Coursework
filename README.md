@@ -1,1 +1,1 @@
-# XJTU-Coursework
+# Mathematical Physics Equations
