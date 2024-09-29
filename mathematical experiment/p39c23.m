@@ -1,0 +1,10 @@
+t=0:pi/20:2*pi;
+[x,y,z]=cylinder(2+sin(t),100);
+surf(x,y,z);
+grid off;
+axis off;
+shading interp;
+colormap("hot");
+light('Posi',[-4,-1,0]);
+lighting phong;
+material metal;
