@@ -1,0 +1,11 @@
+x=-8:0.1:8;
+y=-8:0.1:8;
+[xb,yb]=meshgrid(x,y);
+zb=sqrt(xb.^2+yb.^2);
+zd=sin(zb)./zb;
+figure(1);
+mesh(xb,yb,zd);
+figure(2);
+meshc(xb,yb,zd);
+figure(3);
+meshz(xb,yb,zd);
