@@ -1,6 +1,6 @@
 # XJTU-Coursework
 
-This is a repo for all the computer-related courses Labs/Homework/Tasks/... I took during my undergraduatestudies at XJTU. ✒️
+This is a repo for some important computer-related courses Labs/Homework/Tasks/... I took during my undergraduatestudies at XJTU. ✒️
 
 ## Courses List
 
