@@ -16,4 +16,4 @@ This is a repo for some important computer-related courses Labs/Homework/Tasks/.
 |[👌]|23fall||[Circuit](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Circuit)||
 |[👌]|23fall 24spring||[Integrated Engineering Training](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Integrated-Engineering-Training)||
 |[👌]|24spring||[Assembly Language](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Assembly-Language)||
-|[👌]|24spring||[Game Design and Development](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Game-Design-and-Developmentt)||
+|[👌]|24spring||[Game Design and Development](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Game-Design-and-Development)||
