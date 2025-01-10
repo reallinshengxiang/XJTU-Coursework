@@ -1,0 +1,34 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Problem background}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{Overview of our goals}{section.1}% 3
+\BOOKMARK [1][-]{section.2}{Assumptions}{}% 4
+\BOOKMARK [1][-]{section.3}{Data Processing}{}% 5
+\BOOKMARK [1][-]{section.4}{Network of Musical Influence}{}% 6
+\BOOKMARK [2][-]{subsection.4.1}{Global Network}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.2}{Influence Parameters}{section.4}% 8
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Influence Depth}{subsection.4.2}% 9
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Influence Speed}{subsection.4.2}% 10
+\BOOKMARK [3][-]{subsubsection.4.2.3}{Influence Breadth}{subsection.4.2}% 11
+\BOOKMARK [2][-]{subsection.4.3}{Subnetwork}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Similarity Comprehensive Evaluation Model}{}% 13
+\BOOKMARK [2][-]{subsection.5.1}{Factor Analysis}{section.5}% 14
+\BOOKMARK [2][-]{subsection.5.2}{Modified Cosine Similarity}{section.5}% 15
+\BOOKMARK [1][-]{section.6}{Genre Distinction}{}% 16
+\BOOKMARK [2][-]{subsection.6.1}{Comparison of Similarities \046 Influence}{section.6}% 17
+\BOOKMARK [2][-]{subsection.6.2}{Distinguishing Indicators}{section.6}% 18
+\BOOKMARK [2][-]{subsection.6.3}{Change of the Genre}{section.6}% 19
+\BOOKMARK [2][-]{subsection.6.4}{Relationship Between Genres}{section.6}% 20
+\BOOKMARK [1][-]{section.7}{Exploration of Actual Influence}{}% 21
+\BOOKMARK [2][-]{subsection.7.1}{Real Affect of Influencers}{section.7}% 22
+\BOOKMARK [2][-]{subsection.7.2}{\217Contagious\220 Characteristics}{section.7}% 23
+\BOOKMARK [1][-]{section.8}{Revolution of Music Genres}{}% 24
+\BOOKMARK [2][-]{subsection.8.1}{Determination of characteristics}{section.8}% 25
+\BOOKMARK [2][-]{subsection.8.2}{Determination of Revolutionaries}{section.8}% 26
+\BOOKMARK [1][-]{section.9}{Dynamic Influence}{}% 27
+\BOOKMARK [1][-]{section.10}{External Factors}{}% 28
+\BOOKMARK [1][-]{section.11}{Sensitivity Analysis}{}% 29
+\BOOKMARK [1][-]{section.12}{Strength and Weakness}{}% 30
+\BOOKMARK [2][-]{subsection.12.1}{Strength}{section.12}% 31
+\BOOKMARK [2][-]{subsection.12.2}{Weakness}{section.12}% 32
+\BOOKMARK [1][-]{section*.2}{Appendices}{}% 33
+\BOOKMARK [1][-]{appendix.a.A}{Appendix Document to the ICM Society}{}% 34
