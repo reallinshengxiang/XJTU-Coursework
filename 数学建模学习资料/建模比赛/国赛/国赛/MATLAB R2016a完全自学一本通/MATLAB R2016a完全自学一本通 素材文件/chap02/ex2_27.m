@@ -1,5 +1,0 @@
-schedulemap = containers.Map({'Monday','Tuesday','Wednesday','Thursday','Friday'},{'Maths','Chinese','History','Geography','Biology'})
-newMap = containers.Map()
-remove(schedulemap,'Thursday')
-keys(schedulemap)
-values(schedulemap)
