@@ -1,1 +1,0 @@
-ezpolar('sin(4*t)');
