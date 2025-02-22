@@ -1,5 +1,5 @@
-# XJTU-Coursework
-
+# XJTU-Coursework   
+![GitHub repo size](https://img.shields.io/github/repo-size/reallinshengxiang/XJTU-Coursework)    
 This is a repo for some important computer-related courses Labs/Homework/Tasks/... I took during my undergraduatestudies at XJTU. ✒️
 
 ## Courses List
