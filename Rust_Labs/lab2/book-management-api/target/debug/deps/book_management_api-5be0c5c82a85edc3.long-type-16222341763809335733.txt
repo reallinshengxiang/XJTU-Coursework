@@ -1,0 +1,1 @@
+HttpServer<{closure@src/main.rs:211:21: 211:28}, App<impl ServiceFactory<ServiceRequest, Config = (), Response = ServiceResponse<_>, Error = actix_web::Error, InitError = ()>>, actix_web::app_service::AppInit<impl ServiceFactory<ServiceRequest, Config = (), Response = ServiceResponse<_>, Error = actix_web::Error, InitError = ()>, _>, _>
