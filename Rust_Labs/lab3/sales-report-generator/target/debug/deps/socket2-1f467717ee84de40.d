@@ -1,0 +1,11 @@
+/home/linshengxiang/rustproject/sales-report-generator/target/debug/deps/libsocket2-1f467717ee84de40.rmeta: /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/lib.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockaddr.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/socket.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockref.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sys/unix.rs
+
+/home/linshengxiang/rustproject/sales-report-generator/target/debug/deps/libsocket2-1f467717ee84de40.rlib: /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/lib.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockaddr.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/socket.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockref.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sys/unix.rs
+
+/home/linshengxiang/rustproject/sales-report-generator/target/debug/deps/socket2-1f467717ee84de40.d: /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/lib.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockaddr.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/socket.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockref.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sys/unix.rs
+
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/lib.rs:
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockaddr.rs:
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/socket.rs:
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sockref.rs:
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/socket2-0.4.10/src/sys/unix.rs:

@@ -1,0 +1,13 @@
+[package]
+name = "sales-report-generator"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+mysql = "23.0.0"
+anyhow = "1.0.71"
+chrono = { version = "0.4.31", features = ["serde"] }
+toml = "0.8.0"
+serde = { version = "1.0.163", features = ["derive"] }
+tokio = { version = "1.0", features = ["full"] }
+serde_json = "1.0"
