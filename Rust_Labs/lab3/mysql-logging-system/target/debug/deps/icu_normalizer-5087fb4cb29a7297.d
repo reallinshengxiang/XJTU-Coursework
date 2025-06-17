@@ -1,0 +1,10 @@
+/home/linshengxiang/rustproject/mysql-logging-system/target/debug/deps/libicu_normalizer-5087fb4cb29a7297.rmeta: /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/lib.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/properties.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/provider.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/uts46.rs
+
+/home/linshengxiang/rustproject/mysql-logging-system/target/debug/deps/libicu_normalizer-5087fb4cb29a7297.rlib: /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/lib.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/properties.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/provider.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/uts46.rs
+
+/home/linshengxiang/rustproject/mysql-logging-system/target/debug/deps/icu_normalizer-5087fb4cb29a7297.d: /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/lib.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/properties.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/provider.rs /home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/uts46.rs
+
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/lib.rs:
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/properties.rs:
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/provider.rs:
+/home/linshengxiang/.cargo/registry/src/index.crates.io-6f17d22bba15001f/icu_normalizer-2.0.0/src/uts46.rs:

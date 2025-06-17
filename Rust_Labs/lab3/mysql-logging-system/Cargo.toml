@@ -1,0 +1,8 @@
+[package]
+name = "mysql-logging-system"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+mysql = "23.0.0"
+chrono = { version = "0.4", features = ["serde"] }  
