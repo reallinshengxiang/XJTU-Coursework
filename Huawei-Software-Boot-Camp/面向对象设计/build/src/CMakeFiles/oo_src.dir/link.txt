@@ -1,0 +1,2 @@
+/usr/bin/ar qc liboo_src.a  CMakeFiles/oo_src.dir/person.cpp.o
+/usr/bin/ranlib liboo_src.a

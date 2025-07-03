@@ -1,0 +1,1 @@
+/usr/bin/c++   -Wno-invalid-offsetof -g -std=gnu++11   CMakeFiles/test_executor.dir/executor_test.cc.o  -o test_executor  ../src/libexecutor.a ../lib/libgtest_main.a ../lib/libgtest.a -lpthread 

@@ -1,0 +1,15 @@
+set(CMAKE_C_VISIBILITY_PRESET hidden)
+
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
+*.cpp
+*.cc
+*.c++
+*.c
+*.C)
+
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
+
+target_include_directories(${PROJECT_NAME} 
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/deps
+    PUBLIC ${PROJECT_SOURCE_DIR}/include
+)
