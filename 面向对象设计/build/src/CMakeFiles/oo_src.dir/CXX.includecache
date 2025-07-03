@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/linshengxiang/Huawei-Software-Boot-Camp/面向对象设计/src/person.cpp
+person.h
+/home/linshengxiang/Huawei-Software-Boot-Camp/面向对象设计/src/person.h
+
+/home/linshengxiang/Huawei-Software-Boot-Camp/面向对象设计/src/person.h
+string
+-
+

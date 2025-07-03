@@ -1,0 +1,2 @@
+/usr/bin/ar qc libexecutor.a  CMakeFiles/executor.dir/executor/CallbackHandler.cpp.o CMakeFiles/executor.dir/executor/ConfigPointManager.cpp.o CMakeFiles/executor.dir/executor/DirectionConverter.cpp.o CMakeFiles/executor.dir/executor/Executor.cpp.o CMakeFiles/executor.dir/executor/InitializationHandler.cpp.o CMakeFiles/executor.dir/executor/MovementHandler.cpp.o
+/usr/bin/ranlib libexecutor.a
