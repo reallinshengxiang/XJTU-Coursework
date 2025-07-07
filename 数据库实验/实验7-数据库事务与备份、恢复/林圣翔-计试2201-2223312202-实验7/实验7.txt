@@ -1,0 +1,230 @@
+1、数据库事务的练习
+（1）、在 employees 表中，为员工 emp_no 为 10003 的员工新增一条工作经历记录到 dept_emp表，同时在 titles 表中为其添加一个新的职位记录。请编写一个事务，确保这两个操作要么都成功提交，要么都不生效，并通过 SELECT 给出事务提交前后查询相关数据的 SQL 语句及预期结果。
+-- 1. 事务提交前查询原始数据
+SELECT 'Before Transaction (dept_emp)' AS state, * FROM kk.dept_emp WHERE emp_no = 10003;
+SELECT 'Before Transaction (titles)' AS state, * FROM kk.titles WHERE emp_no = 10003;
+-- 2. 执行事务（包含插入操作）
+START TRANSACTION;
+INSERT INTO kk.dept_emp (emp_no, dept_no, from_date, to_date)
+VALUES (10003, 'd001', '2023-01-01', '2024-01-01');
+INSERT INTO kk.titles (emp_no, title, from_date, to_date)
+VALUES (10003, 'Market Salesman', '2023-01-01', '2024-01-01');
+COMMIT;
+-- 3. 事务提交后查询原始数据
+SELECT 'After Transaction (dept_emp)' AS state, * FROM kk.dept_emp WHERE emp_no = 10003;
+SELECT 'After Transaction (titles)' AS state, * FROM kk.titles WHERE emp_no = 10003;
+
+（2）需要完成一个事务，要对 salaries 表中 emp_no 为 10001 的员工薪资进行调整，先将薪资提高 20%，然后模拟一个错误操作（如将 to_date 设置为一个不合理的过去时间），使用事务回滚确保数据库数据不受错误操作影响。请编写完整的事务代码，并给出事务回滚前后查询该员工薪资数据的 SQL 语句及预期结果。
+-- 事务回滚前查询原始数据
+SELECT 'Before Transaction' AS state, * FROM kk.salaries 
+WHERE emp_no = 10001 
+ORDER BY from_date DESC
+LIMIT 10;
+-- 开始事务
+START TRANSACTION;
+-- 步骤1：获取当前薪资并提高20%
+UPDATE kk.salaries 
+SET to_date = CURRENT_DATE - 1
+WHERE emp_no = 10001 AND to_date = '9999-01-01';
+INSERT INTO kk.salaries (emp_no, salary, from_date, to_date)
+SELECT 
+    emp_no, 
+    CAST(salary * 1.2 AS INT),  -- 提高20%
+    CURRENT_DATE, 
+    '9999-01-01'
+FROM kk.salaries
+WHERE emp_no = 10001 AND to_date = CURRENT_DATE - 1;
+-- 事务进行中查询原始数据
+SELECT 'On Transaction' AS state, * FROM kk.salaries 
+WHERE emp_no = 10001 
+ORDER BY from_date DESC
+LIMIT 10;
+-- 步骤2：模拟错误操作（设置不合理的过去时间）
+-- 尝试插入一条to_date早于from_date的记录
+INSERT INTO kk.salaries (emp_no, salary, from_date, to_date)
+VALUES (10001, 10000, '2025-05-31', '2020-01-01');  -- to_date < from_date
+-- 显式回滚（实际不会执行到这里，因为上条INSERT会失败）
+ROLLBACK;
+-- 事务回滚后查询数据
+SELECT 'After Transaction (Rollback)' AS state, * FROM kk.salaries 
+WHERE emp_no = 10001 
+ORDER BY from_date DESC
+LIMIT 10;
+
+（3）在 departments 表中，要对部门信息进行一系列操作。首先插入一个新部门记录，设置保存点；接着尝试修改一个不存在的部门编号（模拟错误操作）；然后回滚到保存点，再插入另一个新部门记录，最后提交事务。请编写完整的事务代码，并给出各个关键步骤（设置保存点、回滚到保存点、提交事务）前后查询 departments 表数据的 SQL 语句及预期结果。
+-- 事务开始前查询原始数据
+SELECT 'Before Transaction' AS state, * FROM kk.departments ORDER BY dept_no;
+-- 开始事务
+START TRANSACTION;
+-- 步骤1：插入第一个新部门
+INSERT INTO kk.departments (dept_no, dept_name)
+VALUES ('d010', 'Learning');
+-- 设置保存点
+SAVEPOINT sp1;
+-- 步骤2：尝试修改不存在的部门（模拟错误操作）
+UPDATE kk.departments 
+SET dept_name = 'Invalid Department' 
+WHERE dept_no = 'd999';  -- 不存在的部门编号
+-- 保存点后查询（显示第一个部门已插入）
+SELECT 'After Savepoint (before rollback)' AS state, * 
+FROM kk.departments 
+WHERE dept_no IN ('d010', 'd011')
+ORDER BY dept_no;
+SELECT 'After Savepoint (before rollback)' AS state, * FROM kk.departments ORDER BY dept_no;
+-- 步骤3：回滚到保存点（撤销错误操作）
+ROLLBACK TO SAVEPOINT sp1;
+-- 回滚后查询（错误操作已撤销）
+SELECT 'After Rollback to Savepoint' AS state, * FROM kk.departments ORDER BY dept_no;
+-- 步骤4：插入第二个新部门
+INSERT INTO kk.departments (dept_no, dept_name)
+VALUES ('d011', 'Policy');
+-- 提交前查询（两个部门都存在）
+SELECT 'Before Commit' AS state, *  FROM kk.departments ORDER BY dept_no;
+-- 提交事务
+COMMIT;
+-- 事务结束后查询最终数据
+SELECT 'After Commit' AS state, *  FROM kk.departments ORDER BY dept_no;
+
+（4）基于 employ 数据库，设置两个用户连接，同时并发对同一个数据库（employ数据库）进行操作，设置实验进行下列验证：
+a）READ COMMITTED（默认级别）下不会发生脏读。
+b) READ COMMITTED 下会发生不可重复读。
+c) 设置隔离级别 REPEATABLE READ，解决不可重复读问题
+-- 1. 创建测试表
+CREATE TABLE kk.concurrency_test (
+    id INT PRIMARY KEY,
+    value VARCHAR(50)
+);
+INSERT INTO kk.concurrency_test VALUES (1, 'Initial Value');
+
+-- 2. 创建测试用户并授权
+CREATE USER test_user1 PASSWORD 'Password1';
+CREATE USER test_user2 PASSWORD 'Password2';
+GRANT ALL PRIVILEGES ON DATABASE employ TO test_user1, test_user2;
+GRANT USAGE ON SCHEMA kk TO test_user1, test_user2;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA kk TO test_user1, test_user2;
+a)
+-- 连接到 employ 数据库
+\c employ test_user1
+-- 开始事务并修改数据
+BEGIN;
+UPDATE kk.concurrency_test SET value = 'Dirty Read Attempt' WHERE id = 1;
+-- 保持事务开放，不提交
+-- 连接到 employ 数据库
+\c employ test_user2
+-- 设置隔离级别为 READ COMMITTED
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+-- 开始事务并查询
+BEGIN;
+SELECT 'READ COMMITTED: Attempt Dirty Read' AS test, * 
+FROM kk.concurrency_test WHERE id = 1;
+COMMIT;
+b)
+\c employ test_user1
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+BEGIN;
+SELECT 'READ COMMITTED: First Read' AS test, * 
+FROM kk.concurrency_test WHERE id = 1;
+-- 保持事务开放
+\c employ test_user2
+BEGIN;
+UPDATE kk.concurrency_test SET value = 'Updated Value' WHERE id = 1;
+COMMIT;
+返回会话 1:
+SELECT 'READ COMMITTED: Second Read' AS test, * 
+FROM kk.concurrency_test WHERE id = 1;
+COMMIT;
+c)
+\c employ test_user1
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+BEGIN;
+SELECT 'REPEATABLE READ: First Read' AS test, * 
+FROM kk.concurrency_test WHERE id = 1;
+-- 保持事务开放
+\c employ test_user2
+BEGIN;
+UPDATE kk.concurrency_test SET value = 'New Update' WHERE id = 1;
+COMMIT;
+SELECT 'REPEATABLE READ: Second Read' AS test, * 
+FROM kk.concurrency_test WHERE id = 1;
+COMMIT;
+-- 提交后验证最终值
+SELECT 'Final Value' AS test, * 
+FROM kk.concurrency_test WHERE id = 1;
+
+2、数据库备份与恢复的练习
+在 openGauss 中，使用物理备份工具和逻辑备份工具：
+1）逻辑备份 employ 数据库，以目录形式输出到 /home/opengauss/logic/team。
+mkdir -p /home/opengauss/logic/team
+sudo chown -R opengauss:opengauss /home/opengauss/logic/
+sudo chmod -R 775 /home/opengauss/logic/
+gs_dump -U user1 -W "123456abc." -p 5432 -F d -f /home/opengauss/logic/team/employ employ
+
+2）逻辑备份 employees 员工表，以自定义形式输出到 /home/opengauss/logic/employees.dump。
+gs_dump -U user1 -W "123456abc." -F c -t kk.employees -f /home/opengauss/logic/employees.dump employ
+
+3）对 openGauss 的所有数据库数据进行一次性逻辑备份，并且以文本形式输出到/home/opengauss/logic/database.bak。
+gs_dumpall -U user1 -W "123456abc." -f /home/opengauss/logic/database.bak
+
+4）将1）导出的 employ 数据库目录恢复成原本的数据库。【先将数据库删除】
+-- 强制终止所有连接到employ数据库的会话，删除employ数据库。
+gsql -U user1 -W "123456abc" -d postgres -c "DROP DATABASE IF EXISTS employ;"
+-- 进入gsql  
+CREATE DATABASE employ;
+-- 退出gsql后，创建shema kk  
+gsql -U user1 -d employ -c "CREATE SCHEMA kk;"
+-- 使用 gs_restore 工具进行逻辑恢复
+gs_restore -U user1 -W "123456abc." -d employ -F d /home/opengauss/logic/team/employ
+
+5）将 1）导出的 emoloyees 员工表导入 employ 数据库中。【先将表删除】
+-- 删除所有依赖该表的外键约束
+gsql -U user1 -W "123456abc." -d employ -c "ALTER TABLE kk.dept_emp DROP CONSTRAINT dept_emp_emp_no_fkey;"
+gsql -U user1 -W "123456abc." -d employ -c "ALTER TABLE kk.dept_manager DROP CONSTRAINT dept_manager_emp_no_fkey;"
+gsql -U user1 -W "123456abc." -d employ -c "ALTER TABLE kk.salaries DROP CONSTRAINT salaries_emp_no_fkey;"
+gsql -U user1 -W "123456abc." -d employ -c "ALTER TABLE kk.titles DROP CONSTRAINT titles_emp_no_fkey;"
+-- 删除表
+gsql -U user1 -W "123456abc." -d employ -c "DROP TABLE kk.employees;"
+-- 使用 gs_restore 工具进行逻辑恢复
+gs_restore -U user1 -W "123456abc." -F c -d employ /home/opengauss/logic/employees.dump
+
+6)将employ数据库进行全量物理备份，输出到目录 /home/opengauss/physic/gs_bak。【注意先初始化备份目录、添加备份实例】
+-- 创建相关文件夹，并初始化备份目录。
+mkdir -p /home/opengauss/physic/gs_bak
+gs_probackup init -B /home/opengauss/physic/gs_bak
+-- 使用gs_probackup工具进行全量备份。
+gs_probackup add-instance -B /home/opengauss/physic/gs_bak -D /var/lib/opengauss/data --instance employ_instance
+-- 对数据库集群执行全量备份
+gs_probackup backup -B /home/opengauss/physic/gs_bak --instance=employ_instance_inst -b FULL
+-- 执行 show 命令查看全量备份文件，备份成功
+gs_probackup show -B /home/opengauss/physic/gs_bak --instance=employ_instance
+
+7）将employ 数据库进行增量物理备份，输出到目录 /home/opengauss/physic/gs_bak。
+gsql -U user1 -W "123456abc." -d employ -c "ALTER SYSTEM SET enable_cbm_tracking=on;"
+gsql -U user1 -W "123456abc." -d employ -c "CREATE TABLE test1(a int);"
+gs_probackup backup -B /home/opengauss/physic/gs_bak --instance=employ_instance -b PTRACK
+-- 创建新的全量备份：
+gs_probackup backup -B /home/opengauss/physic/gs_bak --instance=employ_instance -b FULL
+-- 再次尝试 PTRACK 增量备份：
+gs_probackup backup -B /home/opengauss/physic/gs_bak --instance=employ_instance -b PTRACK
+gsql -U user1 -W "123456abc." -d employ -c "CREATE TABLE test2(a int);"
+gs_probackup backup -B /home/opengauss/physic/gs_bak --instance=employ_instance -b PTRACK
+gs_probackup show -B /home/opengauss/physic/gs_bak --instance=employ_instance
+gsql -U user1 -W "123456abc." -d employ -c "CREATE TABLE test3(a int);"
+
+8）对 employ 数据库进行增量恢复。【先将整个数据库目录删除】
+-- 删除整个数据库目录
+sudo rm -rf  /var/lib/opengauss/data
+-- 执行show命令查看增量备份文件id
+gs_probackup show -B /home/opengauss/physic/gs_bak --instance=employ_instance
+-- 修改目录所有者和组，赋予目录权限
+sudo chown -R opengauss:opengauss /var/lib/opengauss/
+sudo chmod -R 750 /var/lib/opengauss
+-- 执行第一次增量恢复
+gs_probackup restore -B /home/opengauss/physic/gs_bak --instance=employ_instance -i SXDJFN
+-- 重启opengauss数据库后，执行 \d 命令
+gsql -U user1 -W "123456abc." -d employ -c "\d"
+-- 删除整个数据库目录
+sudo rm -rf  /var/lib/opengauss/data
+-- 执行第二次增量恢复
+gs_probackup restore -B /home/opengauss/physic/gs_bak --instance=employ_instance -i SXDJWL
+-- 重启opengauss数据库后，执行 \d 命令
+gsql -U user1 -W "123456abc." -d employ -c "\d"

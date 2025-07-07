@@ -1,0 +1,342 @@
+一、存储过程：
+1) 创建并执行一个带输入参数和一个输入输出参数的存储过程proc_product1，通过该存储过程可以根据输入参数员工编号进行员工具体信息的查询：包括名字、生日、性别、在不同时间段下的工资。【使用游标】
+CREATE OR REPLACE PROCEDURE kk.proc_product1(
+    IN p_emp_no INT,
+    INOUT p_result REFCURSOR
+)
+AS 
+DECLARE
+    v_emp_info RECORD;
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM kk.employees WHERE emp_no = p_emp_no) THEN
+        RAISE EXCEPTION '员工 % 不存在', p_emp_no;
+    END IF;
+
+    SELECT first_name, last_name, birth_date, gender 
+    INTO v_emp_info
+    FROM kk.employees 
+    WHERE emp_no = p_emp_no;
+
+    OPEN p_result FOR 
+        SELECT 
+            v_emp_info.first_name,
+			v_emp_info.last_name,
+            v_emp_info.birth_date,
+            v_emp_info.gender,
+            s.salary,
+            s.from_date,
+            s.to_date
+        FROM kk.salaries s
+        WHERE s.emp_no = p_emp_no;
+END;
+/
+
+BEGIN;
+CALL kk.proc_product1(11111, 'p_result');
+FETCH ALL FROM p_result;
+COMMIT;
+
+
+2) 创建并执行一个带输入参数和多个输出参数的存储过程proc_product2，通过该存储过程可以根据输入参数员工编号查询出该员工具体信息：包括名字、生日、性别、在不同时间段下的工资（数组类型）。【使用多个输出型变量】
+CREATE OR REPLACE FUNCTION kk.proc_product2(
+    IN p_emp_no INT,                     
+    OUT o_first_name VARCHAR(50),        
+    OUT o_last_name VARCHAR(50),         
+    OUT o_birth_date DATE,              
+    OUT o_gender CHAR(1),               
+    OUT o_salaries JSON                
+) 
+AS $$
+BEGIN
+    SELECT first_name, last_name, birth_date, gender 
+    INTO o_first_name, o_last_name, o_birth_date, o_gender
+    FROM kk.employees 
+    WHERE emp_no = p_emp_no;
+    
+    SELECT json_agg(
+        json_build_object(
+            'salary', salary,
+            'from_date', from_date,
+            'to_date', to_date
+        )
+    ) INTO o_salaries
+    FROM kk.salaries
+    WHERE emp_no = p_emp_no;
+    
+    IF o_first_name IS NULL THEN
+        RAISE NOTICE '员工 % 不存在', p_emp_no;
+    END IF;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT * FROM kk.proc_product2(11111);
+
+3) 删除存储过程 proc_product2。
+DROP PROCEDURE IF EXISTS kk.proc_product2;
+
+二、函数：
+1) 创建一个函数，实现根据输入的 dept_no(员工编号)查看该员工所属部门(department)、职位(title)和工资(salary)。
+CREATE OR REPLACE FUNCTION kk.func_emp_dept_title_salary(
+    p_emp_no INT
+)
+RETURNS TABLE (
+    dept_name VARCHAR(40),
+    title VARCHAR(50), 
+    salary INT  
+) 
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        d.dept_name,
+        t.title,
+        s.salary
+    FROM 
+        kk.employees e
+    JOIN kk.dept_emp de ON e.emp_no = de.emp_no
+    JOIN kk.departments d ON de.dept_no = d.dept_no
+    JOIN kk.titles t ON e.emp_no = t.emp_no
+    JOIN kk.salaries s ON e.emp_no = s.emp_no
+    WHERE 
+        e.emp_no = p_emp_no
+        AND de.to_date = '9999-01-01' 
+        AND t.to_date = '9999-01-01' 
+        AND s.to_date = '9999-01-01';
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT * FROM kk.func_emp_dept_title_salary(11111);
+2) 创建一个函数 INSERT_Func，向 departments 表中插入数据（部门编号、部门名称），并将 departments 中的部门数作为返回值。
+CREATE OR REPLACE FUNCTION kk.INSERT_Func(
+    p_dept_no CHAR(4),   
+    p_dept_name VARCHAR(40) 
+)
+RETURNS INTEGER        
+AS $$
+DECLARE
+    dept_count INTEGER; 
+BEGIN
+    INSERT INTO kk.departments(dept_no, dept_name)
+    VALUES (p_dept_no, p_dept_name);
+    
+    SELECT COUNT(*) INTO dept_count
+    FROM kk.departments;
+    
+    RETURN dept_count;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT kk.INSERT_Func('d010', 'Research Development');
+
+3) 创建一个触发器函数，实现向 departments 表中插入数据。
+
+CREATE OR REPLACE FUNCTION tri_dept_insert_func()
+RETURNS TRIGGER
+AS $$
+BEGIN
+    IF length(NEW.dept_name) < 3 THEN
+        RAISE EXCEPTION '部门名称必须至少包含3个字符';
+    END IF;
+    
+    IF NOT (NEW.dept_no ~ '^d\d{3}$') THEN
+        RAISE EXCEPTION '部门编号格式不正确，应为d开头加3位数字(如d001)';
+    END IF;
+    
+    INSERT INTO kk.dept_creation_log(
+        dept_no, 
+        dept_name, 
+        created_by, 
+        creation_time
+    ) VALUES (
+        NEW.dept_no,
+        NEW.dept_name,
+        current_user,
+        current_timestamp
+    );
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TRI_DEPT_INSERT
+BEFORE INSERT ON kk.departments
+FOR EACH ROW 
+EXECUTE PROCEDURE tri_dept_insert_func();
+
+--检验
+INSERT INTO kk.departments VALUES ('x010', 'IT');
+INSERT INTO kk.departments VALUES ('d011', 'A');
+INSERT INTO kk.departments VALUES ('x010', 'drdbtn');
+
+4) 创建并执行一个函数 FUNC1，通过该函数可以根据输入参数员工编号查询出该员工具体信息：包括名字、生日、性别、在不同时间段下的工资（放在数组中）。
+CREATE OR REPLACE FUNCTION kk.FUNC1(
+    p_emp_no INTEGER
+)
+RETURNS TABLE (
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    birth_date DATE,
+    gender VARCHAR(6),
+    salaries JSON
+) 
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        e.first_name,
+        e.last_name,
+        e.birth_date,
+        e.gender,
+        (SELECT json_agg(
+            json_build_object(
+                'from_date', s.from_date,
+                'to_date', s.to_date,
+                'salary', s.salary
+            )
+            ORDER BY s.from_date DESC
+        )
+        FROM kk.salaries s
+        WHERE s.emp_no = e.emp_no) AS salaries
+    FROM 
+        kk.employees e
+    WHERE 
+        e.emp_no = p_emp_no;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT * FROM kk.FUNC1(11111);
+
+5) 创建并执行一个函数 FUNC2，基于 FUNC1，通过该函数可以根据输入参数员工编号查询出该员工具体信息：包括名字、生日、性别、在不同时间段下的工资的均值。（函数嵌套）
+CREATE OR REPLACE FUNCTION kk.FUNC1(
+    p_emp_no INTEGER
+)
+RETURNS TABLE (
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    birth_date DATE,
+    gender VARCHAR(6),
+    salaries JSON
+) 
+AS $$
+BEGIN
+    RETURN QUERY
+    SELECT 
+        e.first_name,
+        e.last_name,
+        e.birth_date,
+        e.gender,
+        (SELECT json_agg(
+            json_build_object(
+                'from_date', s.from_date,
+                'to_date', s.to_date,
+                'salary', s.salary
+            )
+            ORDER BY s.from_date DESC
+        )
+        FROM kk.salaries s
+        WHERE s.emp_no = e.emp_no) AS salaries
+    FROM 
+        kk.employees e
+    WHERE 
+        e.emp_no = p_emp_no;
+END;
+$$ LANGUAGE PLPGSQL;
+
+CREATE OR REPLACE FUNCTION kk.FUNC2(
+    p_emp_no INTEGER
+)
+RETURNS TABLE (
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    birth_date DATE,
+    gender VARCHAR(6),
+    avg_salary NUMERIC(10,2)
+) 
+AS $$
+DECLARE
+    salary_records JSON;
+BEGIN
+    SELECT f.salaries INTO salary_records
+    FROM kk.FUNC1(p_emp_no) f;
+    
+    RETURN QUERY
+    SELECT 
+        f.first_name,
+        f.last_name,
+        f.birth_date,
+        f.gender,
+        (SELECT AVG((s->>'salary')::NUMERIC) 
+         FROM json_array_elements(salary_records) s) AS avg_salary
+    FROM 
+        kk.FUNC1(p_emp_no) f
+    LIMIT 1;
+END;
+$$ LANGUAGE PLPGSQL;
+
+SELECT * FROM kk.FUNC2(11111);
+
+三、触发器：
+1) 创建一个触发器，实现当删除 employees 表的一条员工记录时，将该数据也同步删除在 dept_manager、dept_emp、salaries、titles 表中的记录。
+CREATE OR REPLACE FUNCTION kk.tri_emp_delete_func()
+RETURNS TRIGGER
+AS $$
+BEGIN
+    DELETE FROM kk.dept_manager 
+    WHERE emp_no = OLD.emp_no;
+    DELETE FROM kk.dept_emp 
+    WHERE emp_no = OLD.emp_no;
+    DELETE FROM kk.salaries 
+    WHERE emp_no = OLD.emp_no;
+    DELETE FROM kk.titles 
+    WHERE emp_no = OLD.emp_no;
+    RETURN OLD;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER TRI_EMP_DELETE
+BEFORE DELETE ON kk.employees
+FOR EACH ROW 
+EXECUTE PROCEDURE kk.tri_emp_delete_func();
+
+--测试
+SELECT * FROM kk.salaries WHERE emp_no = 10001;
+DELETE FROM kk.employees WHERE emp_no = 10001;
+SELECT * FROM kk.salaries WHERE emp_no = 10001;
+
+2)在salaries 表上创建一个BEFORE行级触发器(名称:INSERT_OR_UPDATE_SAL)以实现如下完整性规则:员工的工资不得低于80000 元，如果低于 80000 元，自动改为 80000 元。
+CREATE OR REPLACE FUNCTION kk.insert_or_update_sal_func()
+RETURNS TRIGGER
+AS $$
+BEGIN
+    IF NEW.salary < 80000 THEN
+        RAISE NOTICE '员工 % 的工资 %.2f 低于80000元，自动调整为80000元', 
+                     NEW.emp_no, NEW.salary;
+        NEW.salary := 80000;
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER INSERT_OR_UPDATE_SAL
+BEFORE INSERT OR UPDATE OF salary ON kk.salaries
+FOR EACH ROW 
+EXECUTE PROCEDURE kk.insert_or_update_sal_func();
+
+3) 验证触发器是否正常工作：分别执行以下 A,B 两种操作，验证 INSERT_OR_ UPDATE_SAL 触发器是否被触发?工作是否正确?如果正确，请观察 salaries 表
+中数据的变化是否与预期一致。插 入 两 条 新 数 据 
+(10005,80001,'1995-06-24 00:00:00','1996-06-24 00:00:00') ,
+(10006,78888 ,'2000-06-22 00:00:00','2002-09-22 00:00:00');
+更新数据:将 id 为 10002 的员工在所有时期的工资改为 90000。
+INSERT INTO kk.salaries VALUES
+(10005, 80001, '1995-06-24', '1996-06-24'),
+(10006, 78888, '2000-06-22', '2002-09-22');
+
+UPDATE kk.salaries SET salary = 90000 WHERE emp_no = 10002;
+
+SELECT * FROM kk.salaries 
+WHERE emp_no IN (10005, 10006, 10002)
+ORDER BY emp_no, from_date;
+
+4) 删除触发器 INSERT_OR_UPDATE_SAL。
+DROP TRIGGER IF EXISTS INSERT_OR_UPDATE_SAL ON kk.salaries;
