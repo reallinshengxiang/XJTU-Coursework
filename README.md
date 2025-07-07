@@ -19,5 +19,6 @@ This is a repo for some important computer-related courses Labs/Homework/Tasks/.
 |[👌]|24spring||[Game Design and Development](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Game-Design-and-Development)|
 |[👌]|25spring||[Cognitive Computing and Machine Learning](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Cognitive-Computing-and-Machine-Learning)|    
 |[👌]|25spring||[Computer Architecture](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Computer-Architecture)|    
+|[👌]|25spring||[Database](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Database)|    
 |[👌]|25spring||[Rust Language Programming](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Rust-Language-Programming)|      
 |[👌]|25summer||[Huawei Software Boot Camp](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Huawei-Software-Boot-Camp)|      
