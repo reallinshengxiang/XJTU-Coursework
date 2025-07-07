@@ -1,0 +1,257 @@
+3.1 分区表
+1、创建
+(1) 创建模式 sche1，然后创建表空间 example1，创建分区表 sche1.students(包括学号 id，姓名，年龄)，并基于年龄（<18、18~20、20~25、25~40），将分区表划分 4 个分区 P1、P2、P3、P4。
+CREATE SCHEMA IF NOT EXISTS sche1;
+CREATE TABLESPACE example1 RELATIVE LOCATION 'tablespace/example1';
+CREATE TABLE sche1.students (
+    id VARCHAR(20) NOT NULL,
+    name VARCHAR(50), 
+    age INT 
+) 
+PARTITION BY RANGE (age) 
+(
+    PARTITION P1 VALUES LESS THAN (18) TABLESPACE example1, 
+    PARTITION P2 VALUES LESS THAN (20) TABLESPACE example1, 
+    PARTITION P3 VALUES LESS THAN (25) TABLESPACE example1, 
+    PARTITION P4 VALUES LESS THAN (40) TABLESPACE example1
+);
+2、增删改查
+(1) 向分区表 sche1.students 中加入增加一些记录(“1001”“, aerf”,10)、(“1021”“, beu”,19)、(“1031”,“cekf”,11)；
+INSERT INTO sche1.students (id, name, age) VALUES
+('1001', 'aerf', 10), 
+('1021', 'beu', 19), 
+('1031', 'cekf', 11); 
+(2) 查询分区 P1 的所有信息【比较使用分区表和不使用分区表（<18）的查询时间比较】；
+-- 查询分区P1的所有记录（使用分区表）
+SELECT * FROM sche1.students PARTITION(P1);
+-- 创建相同的非分区表用于对比
+CREATE TABLE sche1.students_non_partitioned (
+    id VARCHAR(20),
+    name VARCHAR(50),
+    age INT
+) TABLESPACE example1;
+INSERT INTO sche1.students_non_partitioned 
+SELECT * FROM sche1.students;
+SELECT * FROM sche1.students WHERE age < 18;
+-- 分区表查询（P1分区）
+EXPLAIN ANALYZE SELECT * FROM sche1.students PARTITION(P1);
+-- 非分区表等价查询（age < 18）
+EXPLAIN ANALYZE SELECT * FROM sche1.students_non_partitioned WHERE age < 18;
+(3) 删除分区表 sche1.students 和表空间 example1，并删除模式 sche1。
+DROP TABLE IF EXISTS sche1.students CASCADE;
+SELECT n.nspname, c.relname, 
+       CASE c.relkind 
+         WHEN 'r' THEN 'table' 
+         WHEN 'i' THEN 'index'
+         ELSE 'other'
+       END as type
+FROM pg_class c
+JOIN pg_namespace n ON c.relnamespace = n.oid
+WHERE c.reltablespace = (SELECT oid FROM pg_tablespace WHERE spcname = 'example1');
+DROP TABLE IF EXISTS sche1.students_non_partitioned CASCADE;
+DROP TABLESPACE IF EXISTS example1;
+DROP SCHEMA IF EXISTS sche1 CASCADE;
+3.2 主键、外键约束
+1、练习更新、删除主表数据（针对主键属性且子表中可能有参照外键数据）
+(1) 找出学号为“1437120165”的同学，将她的学号更新为“1001”，并更新和参照外键数据；
+BEGIN; 
+INSERT INTO xs(xh, xm, ydh, bj, chrq, xb)
+SELECT '1001', xm, ydh, bj, chrq, xb FROM xs WHERE xh = '1437120165';
+UPDATE xk SET xh = '1001' WHERE xh = '1437120165';
+DELETE FROM xs WHERE xh = '1437120165';
+COMMIT; 
+(2) 学号更新完之后，删除学号为“1001”同学的相关信息。
+BEGIN; 
+DELETE FROM xk WHERE xh = '1001';
+DELETE FROM xs WHERE xh = '1001';
+COMMIT; 
+2、练习更新、删除主表数据（针对非主键属性）
+(1) 寻找性别为“NULL”的数据，并将其赋值为“男”；
+UPDATE xs 
+SET xb = '男' 
+WHERE xb IS NULL;
+(2) 寻找出生日期为“NULL”的数据，删除这些同学的信息，以及他们的选课信息。
+BEGIN; 
+DELETE FROM xk 
+WHERE xh IN (SELECT xh FROM xs WHERE chrq IS NULL);
+DELETE FROM xs 
+WHERE chrq IS NULL;
+COMMIT; 
+3、练习先删除子表数据，再删除主表数据
+(1) 删除设计与艺术学院（zy）的相关信息，并把属于设计与艺术学院的同学，老师，授课信息以及同学的选课信息删除。
+BEGIN; 
+DELETE FROM xk
+WHERE xh IN (SELECT xh FROM xs WHERE ydh = 'zy') 
+   OR (kcbh, jsbh) IN (SELECT kcbh, bh FROM sk WHERE bh IN (SELECT jsbh FROM js WHERE ydh = 'zy')); 
+DELETE FROM sk
+WHERE bh IN (SELECT jsbh FROM js WHERE ydh = 'zy');
+DELETE FROM xs
+WHERE ydh = 'zy';
+DELETE FROM js
+WHERE ydh = 'zy';
+DELETE FROM xyb
+WHERE ydh = 'zy';
+COMMIT; 
+4、使用子查询方式更新、删除数据
+(1) 找出挂过科的同学（至少有一名课程成绩在小于 60），将他们的班级信息更新为“08012048”；
+UPDATE xs
+SET bj = '08012048'
+WHERE xh IN (
+    SELECT DISTINCT xh 
+    FROM xk 
+    WHERE cj < 60
+);
+(2) 找出挂过科的同学，并删除他们的对应数据；与此同时，对应的选课信息也被删除。
+BEGIN; 
+DELETE FROM xk
+WHERE xh IN (
+    SELECT DISTINCT xh 
+    FROM xk 
+    WHERE cj < 60
+);
+DELETE FROM xs
+WHERE xh IN (
+    SELECT DISTINCT xh 
+    FROM xk 
+    WHERE cj < 60
+);
+COMMIT; 
+3.3 数据库索引
+1、使用 create index 创建索引
+(1) 对学生表(xs)中的学号(xh)列创建单列索引 stu_index；
+CREATE INDEX stu_index ON xs(xh);
+(2) 对学生表(xs)中的姓名(xm)和班级(bj)列创建复合索引 ad_index;
+CREATE INDEX ad_index ON xs(xm, bj);
+(3) 对学生表(xs)中的出生日期(chrq)（00/00/0000）的年份创建表达式索引;
+CREATE INDEX idx_chrq_year ON xs(EXTRACT(YEAR FROM chrq));
+(4) 对学院表(xyb)中的学院编号(ydh)列创建唯一索引；
+CREATE UNIQUE INDEX idx_xyb_ydh_unique ON xyb(ydh);
+(5) 对学院表(xyb)中的学院编号(ydh)列创建部分索引（只索引单号的部门 ID）；
+CREATE INDEX idx_xyb_odd_ydh ON xyb(ydh)
+WHERE (CAST(SUBSTRING(ydh FROM '[0-9]+$') AS INTEGER) % 2) = 1;
+2、使用 alter table 添加索引
+(1) 对学生表(xs)中的出生日期列添加一个唯一索引 date_index，姓名(xm)和性别(xb)列添加一个复合索引 name_sex_index；
+ALTER TABLE xs 
+ADD CONSTRAINT date_index UNIQUE (chrq);
+CREATE INDEX name_sex_index ON xs(xm, xb);
+(2) 对学生选课表(xk)中的教师编号(jsbh)列创建外键索引。
+CREATE INDEX fk_jsbh_idx ON xk(jsbh);
+3、在创建表的同时创建索引
+(1) 创建 game 表（比赛编号，比赛名称、比赛时间、学分）（每列的数据类型及长度等信息自定），并对比赛编号列创建主键索引game_pkey，在学分列创建唯一索引game_cre_index。
+CREATE TABLE game (
+    game_id VARCHAR(10) NOT NULL, 
+    game_name VARCHAR(50) NOT NULL, 
+    game_time TIMESTAMP, 
+    credit DECIMAL(3,1), 
+    CONSTRAINT game_pkey PRIMARY KEY (game_id),
+    CONSTRAINT game_cre_index UNIQUE (credit)
+);
+4、 查询计划
+(1) 通过查询计划（EXPLAIN ANALYZE）查询学生表中出生年份在 1998 的学生信息。【比较使用索引和不使用索引的查询时间比较】
+-- 创建索引
+CREATE INDEX IF NOT EXISTS idx_xs_birth_year ON xs(EXTRACT(YEAR FROM chrq));
+-- 测试1: 不使用索引
+SET enable_indexscan = off;
+SET enable_bitmapscan = off;
+EXPLAIN ANALYZE
+SELECT xh, xm, chrq FROM xs WHERE EXTRACT(YEAR FROM chrq) = 1998;
+-- 测试2: 使用索引
+SET enable_indexscan = on;
+SET enable_bitmapscan = on;
+EXPLAIN ANALYZE
+SELECT xh, xm, chrq FROM xs WHERE EXTRACT(YEAR FROM chrq) = 1998;
+-- 重置设置
+RESET enable_indexscan;
+RESET enable_bitmapscan;
+5、 删除索引
+(1) 使用 drop index 删除索引 stu_index、ad_index。
+DROP INDEX IF EXISTS stu_index;
+DROP INDEX IF EXISTS ad_index;
+1、基于分区表查询【体现“未分区”和“分区后”】 
+(1) 查询 salaries 表中 2001 年所有员工的薪资总和。 
+SELECT SUM(salary) AS total_salary_2001
+FROM kk.salaries
+WHERE from_date >= '2001-01-01' AND to_date <= '2001-12-31';
+EXPLAIN ANALYZE
+SELECT SUM(salary) AS total_salary_2001
+FROM kk.salaries
+WHERE from_date >= '2001-01-01' AND to_date <= '2001-12-31';
+CREATE TABLE kk.salaries_partitioned (
+    emp_no      INT             NOT NULL,
+    salary      INT             NOT NULL,
+    from_date   DATE            NOT NULL,
+    to_date     DATE            NOT NULL,
+    FOREIGN KEY (emp_no) REFERENCES kk.employees (emp_no) ON DELETE CASCADE,
+    PRIMARY KEY (emp_no, from_date)
+)
+PARTITION BY RANGE (from_date) (
+    PARTITION salaries_2000 VALUES LESS THAN ('2001-01-01'),
+    PARTITION salaries_2001 VALUES LESS THAN ('2002-01-01'),
+    PARTITION salaries_2002 VALUES LESS THAN ('2003-01-01'),
+    PARTITION salaries_future VALUES LESS THAN (MAXVALUE)
+);
+INSERT INTO kk.salaries_partitioned 
+SELECT * FROM kk.salaries;
+SELECT SUM(salary) AS total_salary_2001
+FROM kk.salaries_partitioned PARTITION(salaries_2001)
+WHERE from_date >= '2001-01-01' AND to_date <= '2001-12-31';
+EXPLAIN ANALYZE
+SELECT SUM(salary) FROM kk.salaries_partitioned
+WHERE from_date >= '2001-01-01' AND from_date < '2002-01-01';
+2、基于索引查询【体现“无索引”和“有索引”】 
+(1) 在 dept_emp 表中，查询在编号为'd001'的部门的员工任职记录。【单列索引】 
+-- 禁用可能的缓存以确保公平比较
+SET enable_seqscan = on;
+SET enable_indexscan = off;
+-- 查询部门 'd001' 的所有员工任职记录（无索引）
+EXPLAIN ANALYZE
+SELECT * FROM kk.dept_emp 
+WHERE dept_no = 'd001';
+SELECT count(*) FROM kk.dept_emp WHERE dept_no = 'd001';
+-- 查询部门 'd001' 的所有员工任职记录（有索引）
+CREATE INDEX idx_dept_emp_dept_no ON kk.dept_emp(dept_no);
+ANALYZE kk.dept_emp;
+SET enable_seqscan = off;
+SET enable_indexscan = on;
+EXPLAIN ANALYZE
+SELECT * FROM kk.dept_emp
+WHERE dept_no = 'd001';
+SELECT count(*) FROM kk.dept_emp WHERE dept_no = 'd001';
+DROP INDEX IF EXISTS kk.idx_dept_emp_dept_no;
+(2) 在 salaries 表中，查询薪资高于 100000 的记录。【部分索引】 
+-- 无索引
+SET enable_indexscan = off;
+SET enable_bitmapscan = off;
+SELECT count(*) AS high_salary_count FROM kk.salaries WHERE salary > 100000; 
+EXPLAIN ANALYZE SELECT * FROM kk.salaries WHERE salary > 100000;
+-- 有索引
+CREATE INDEX idx_salaries_high_salary ON kk.salaries(salary) 
+WHERE salary > 100000;
+ANALYZE kk.salaries;
+SET enable_indexscan = on;
+SET enable_bitmapscan = on;
+SELECT count(*) AS high_salary_count FROM kk.salaries WHERE salary > 100000;
+EXPLAIN ANALYZE SELECT * FROM kk.salaries WHERE salary > 100000;
+DROP INDEX IF EXISTS kk.idx_salaries_high_salary;
+(3) 在 dept_emp 表中，查询编号为'd001'的部门中 2001-1-1 之后 的所有员工任职记【复合索引】
+-- 无索引
+SET enable_indexscan = off;
+SET enable_bitmapscan = off;
+SELECT count(*) AS d001_after_2001_count 
+FROM kk.dept_emp 
+WHERE dept_no = 'd001' AND from_date >= '2001-01-01';
+EXPLAIN ANALYZE 
+SELECT * FROM kk.dept_emp 
+WHERE dept_no = 'd001' AND from_date >= '2001-01-01';
+-- 有索引
+CREATE INDEX idx_dept_emp_dept_no_from_date ON kk.dept_emp(dept_no, from_date);
+ANALYZE kk.dept_emp;
+SET enable_indexscan = on;
+SET enable_bitmapscan = on;
+SELECT count(*) AS d001_after_2001_count 
+FROM kk.dept_emp 
+WHERE dept_no = 'd001' AND from_date >= '2001-01-01';
+EXPLAIN ANALYZE 
+SELECT * FROM kk.dept_emp 
+WHERE dept_no = 'd001' AND from_date >= '2001-01-01';
+DROP INDEX IF EXISTS kk.idx_dept_emp_dept_no_from_date;
