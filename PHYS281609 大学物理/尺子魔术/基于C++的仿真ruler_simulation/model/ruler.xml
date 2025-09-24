@@ -1,0 +1,72 @@
+<mujoco model="ruler">
+
+  <!--  更改气压与空气粘滞系数  -->
+  <option timestep="0.005" viscosity="0.002" wind="0 0 -10"/>
+
+  <size memory="100M"/>
+
+  <default>
+    <geom solimp=".99 .99 .001"/>
+	<!--  更改直尺形状  -->
+    <default class="ruler">
+      <geom type="box" material="ruler" size="0.3 0.05 0.01"/>
+    </default>
+	<!--  更改小球形状，质量  -->
+    <default class="ball">
+      <geom type="sphere" material="ball" size="0.08" mass="1"/>
+    </default>
+    <default class="table">
+      <geom type="box" size="0.41 0.41 0.41" rgba=".55 .55 .55 1"/>
+    </default>
+  </default>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" width="512" height="512" rgb1=".4 .6 .8" rgb2="0 0 0"/>
+    <texture name="texgeom" type="cube" builtin="flat" mark="cross" width="128" height="128"
+             rgb1="0.6 0.6 0.6" rgb2="0.6 0.6 0.6" markrgb="1 1 1"/>
+    <texture name="texplane" type="2d" builtin="checker" rgb1=".4 .4 .4" rgb2=".6 .6 .6"
+             width="512" height="512"/>
+    <material name='MatPlane' reflectance='0.3' texture="texplane" texrepeat="1 1" texuniform="true"
+              rgba=".7 .7 .7 1"/>
+    <material name='ruler' texture="texgeom" texuniform="true" rgba=".4 .9 .9 1" />
+    <material name='ball' texture="texgeom" texuniform="true" rgba=".9 .1 .1 1" />
+  </asset>
+
+  <visual>
+    <quality shadowsize="4096" offsamples="8"/>
+    <map znear="0.1" force="0.05"/>
+  </visual>
+
+  <statistic extent="4"/>
+
+  <worldbody>
+    <light directional="true" diffuse=".8 .8 .8" pos="0 0 10" dir="0 0 -10"/>
+    <geom name="floor" type="plane" size="3 3 .5" material="MatPlane"/>
+    
+    <geom class="table" pos="0 0 0"/>
+    
+
+    
+    <body pos="-0.36 0 0.42" euler="0 0 0">
+      <freejoint/>
+      <geom class="ruler"/>
+    </body>
+	
+	<body pos="-0.55 0 2" euler="0 0 0">
+      <freejoint/>
+      <geom class="ball"/>
+    </body>
+	<!--  更改报纸形状，质量  -->
+	<body name="B3_5" pos="-0.25 -0.1 0.5">
+      <freejoint/>
+      <composite type="cloth" count="15 15 1" spacing="0.05" flatinertia="0.001">
+        <joint kind="main" damping="0.006" stiffness="0.07"/>
+        <skin texcoord="true" inflate="0.001" subgrid="3"/>
+        <geom type="capsule" size="0.021 0.013" rgba=".8 .2 .1 1" mass="0.07"/>
+      </composite>
+    </body>
+
+    
+
+  </worldbody>
+</mujoco>

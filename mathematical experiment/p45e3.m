@@ -1,9 +1,0 @@
-x=-2:0.1:2;
-y=x;
-[xb,yb]=meshgrid(x,y);
-z=(xb.^2+yb.^2)/2;
-index=find(z>2);
-zb=z;
-figure(1);
-zb(index)=zeros(size(index));
-surfc(xb,yb,zb);

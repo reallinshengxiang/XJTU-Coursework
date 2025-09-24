@@ -1,5 +1,0 @@
-x=rand(1,10)
-max(x)
-min(x)
-length(x)
-sum(x)

@@ -1,0 +1,22 @@
+figure(1)
+subplot(2,2,1)
+[x,y,z]=cylinder(2,50);
+surf(x,y,z);
+subplot(2,2,2)
+R=[0,2];
+[X,Y,Z]=cylinder(R);
+surf(X,Y,Z);
+subplot(2,2,3)
+t=-1:0.1:1;
+R=t.^2+1;
+[X,Y,Z]=cylinder(R);
+surf(X,Y,Z);
+subplot(2,2,4)
+[x,y,z]=sphere;
+surf(10*x+1,10*y+1,10*z+1);
+axis equal;
+figure(2)
+a=4;
+b=3;
+c=2;
+surf(x*a,b*y,z*c);
