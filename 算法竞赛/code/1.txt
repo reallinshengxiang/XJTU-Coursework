@@ -1,0 +1,379 @@
+Cycle 1: Issued LOAD ins_id=1, buffer=1, Vj=0, Qj=-1, A=10
+Cycle 1:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1                          |
+|sub.d F12, F10, F2                                  |
+|mul.d F4, F8, F10                                   |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  Yes      10(R2)    |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  0    add1     No                                                  |
+|  0    add2     No                                                  |
+|  0   mult1     No                                                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  1           |
+|F0       F2       F4       F6       F8       F10      |
+|                           Load1                      |
+|F12      F14      F16      F18      F20      F22      |
+|                                                      |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Cycle 2: Issued SUB.D ins_id=2, add_rs=1, Vj=0, Qj=-1, Vk=0, Qk=-1
+Cycle 2: LOAD buffer 1 executing, time_remaining=1
+Cycle 2:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1                          |
+|sub.d F12, F10, F2       2                          |
+|mul.d F4, F8, F10                                   |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  Yes      10(R2)    |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  0    add1    Yes   SUB.D    0.000000    0.000000                  |
+|  0    add2     No                                                  |
+|  0   mult1     No                                                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  2           |
+|F0       F2       F4       F6       F8       F10      |
+|                           Load1                      |
+|F12      F14      F16      F18      F20      F22      |
+|Add1                                                  |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Cycle 3: Issued MULT.D ins_id=3, mult_rs=1, Vj=0, Qj=-1, Vk=0, Qk=-1
+Cycle 3: LOAD buffer 1 completed, ins_id=1, address=10, result=10
+Cycle 3: ADD station 1 executing, time_remaining=2
+Cycle 3:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1         3                |
+|sub.d F12, F10, F2       2                          |
+|mul.d F4, F8, F10        3                          |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  Yes      10(R2)    |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  2    add1    Yes   SUB.D    0.000000    0.000000                  |
+|  0    add2     No                                                  |
+|  0   mult1    Yes  MULT.D    0.000000    0.000000                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  3           |
+|F0       F2       F4       F6       F8       F10      |
+|                  Mult1    Load1                      |
+|F12      F14      F16      F18      F20      F22      |
+|Add1                                                  |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Cycle 4: ADD station 1 executing, time_remaining=1
+Cycle 4: MULT station 1 executing, time_remaining=3
+Cycle 4: Wrote back LOAD buffer 1, ins_id=1, result=10, dest_reg=F6
+Cycle 4:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1         3         4      |
+|sub.d F12, F10, F2       2                          |
+|mul.d F4, F8, F10        3                          |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  No                 |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  1    add1    Yes   SUB.D    0.000000    0.000000                  |
+|  0    add2     No                                                  |
+|  3   mult1    Yes  MULT.D    0.000000    0.000000                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  4           |
+|F0       F2       F4       F6       F8       F10      |
+|                  Mult1                               |
+|F12      F14      F16      F18      F20      F22      |
+|Add1                                                  |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Cycle 5: ADD station 1 completed, ins_id=2, result=0
+Cycle 5: MULT station 1 executing, time_remaining=2
+Cycle 5:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1         3         4      |
+|sub.d F12, F10, F2       2         5                |
+|mul.d F4, F8, F10        3                          |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  No                 |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  0    add1    Yes   SUB.D    0.000000    0.000000        M3        |
+|  0    add2     No                                                  |
+|  2   mult1    Yes  MULT.D    0.000000    0.000000                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  5           |
+|F0       F2       F4       F6       F8       F10      |
+|                  Mult1                               |
+|F12      F14      F16      F18      F20      F22      |
+|Add1                                                  |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Cycle 6: MULT station 1 executing, time_remaining=1
+Cycle 6: Wrote back ADD station 1, ins_id=2, result=0, dest_reg=F12
+Cycle 6:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1         3         4      |
+|sub.d F12, F10, F2       2         5         6      |
+|mul.d F4, F8, F10        3                          |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  No                 |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  0    add1     No                                                  |
+|  0    add2     No                                                  |
+|  1   mult1    Yes  MULT.D    0.000000    0.000000                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  6           |
+|F0       F2       F4       F6       F8       F10      |
+|                  Mult1                               |
+|F12      F14      F16      F18      F20      F22      |
+|                                                      |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Cycle 7: MULT station 1 completed, ins_id=3, result=0
+Cycle 7:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1         3         4      |
+|sub.d F12, F10, F2       2         5         6      |
+|mul.d F4, F8, F10        3         7                |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  No                 |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  0    add1     No                                                  |
+|  0    add2     No                                                  |
+|  0   mult1    Yes  MULT.D    0.000000    0.000000        M5        |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  7           |
+|F0       F2       F4       F6       F8       F10      |
+|                  Mult1                               |
+|F12      F14      F16      F18      F20      F22      |
+|                                                      |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Cycle 8: Wrote back MULT station 1, ins_id=3, result=0, dest_reg=F4
+Cycle 8:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1         3         4      |
+|sub.d F12, F10, F2       2         5         6      |
+|mul.d F4, F8, F10        3         7         8      |
+------------------------------------------------------
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  No                 |
+|load2  No                 |
+----------------------------
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  0    add1     No                                                  |
+|  0    add2     No                                                  |
+|  0   mult1     No                                                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+--------------------------------------------------------
+|           Register Result Status CLOCK=  8           |
+|F0       F2       F4       F6       F8       F10      |
+|                                                      |
+|F12      F14      F16      F18      F20      F22      |
+|                                                      |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+
+Simulation completed in 8 cycles
+Final Instruction Status:
+------------------------------------------------------
+|                 Instruction Status                 |
+|Instruction j  k     Issue Compl(Exec) Result(Write)|
+|load  F6, 10(R2)         1         3         4      |
+|sub.d F12, F10, F2       2         5         6      |
+|mul.d F4, F8, F10        3         7         8      |
+------------------------------------------------------
+
+Final Load Buffer Status:
+----------------------------
+|     Load  Status         |
+|Load   Busy     Address   |
+|load1  No                 |
+|load2  No                 |
+----------------------------
+
+Final Store Buffer Status:
+----------------------------
+|     Store Status         |
+|Store  Busy    Address    |
+|store1 No                 |
+|store2 No                 |
+----------------------------
+
+Final Reservation Station Status:
+----------------------------------------------------------------------
+|                         Reservation   Stations                     |
+|Time   Name   Busy    Op      Vj(S1)      Vk(S2)      Qj(R1)  Qk(R2)|
+|  0    add1     No                                                  |
+|  0    add2     No                                                  |
+|  0   mult1     No                                                  |
+|  0   mult2     No                                                  |
+----------------------------------------------------------------------
+
+Final Register Result Status:
+--------------------------------------------------------
+|           Register Result Status CLOCK=  8           |
+|F0       F2       F4       F6       F8       F10      |
+|                                                      |
+|F12      F14      F16      F18      F20      F22      |
+|                                                      |
+|F24      F26      F28      F30                        |
+|                                                      |
+--------------------------------------------------------
+================ Performance Analysis ================
+Total Execution Cycles: 8
+Sequential Execution Cycles: 15
+Speedup: 1.88
+Throughput (instructions/cycle): 0.38
+Efficiency: 0.62
+======================================================
+你想要查看那个时刻的状态? 1<=time<=8           当前时刻为:0
+A.当前时刻前一时刻
+B.当前时刻后一时刻
+C.当前时刻前N时刻
+D.当前时刻后N时刻
+E.指定具体时刻
+Q.退出
