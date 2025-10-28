@@ -1,6 +1,11 @@
-# XJTU-Coursework   
+<div align="center">
+
+# XJTU-Coursework
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/reallinshengxiang/XJTU-Coursework)
 ![GitHub last commit](https://img.shields.io/github/last-commit/reallinshengxiang/XJTU-Coursework)
+
+</div>
 
 This repository archives my coursework, including labs, homework, and projects, from key computer-related and fundamental courses during my undergraduate studies at Xi'an Jiaotong University (XJTU).  
 
