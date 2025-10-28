@@ -1,8 +1,10 @@
 # XJTU-Coursework   
-![GitHub repo size](https://img.shields.io/github/repo-size/reallinshengxiang/XJTU-Coursework)    
-This is a repo for some important computer-related courses Labs/Homework/Tasks/... I took during my undergraduatestudies at XJTU. ✒️
+![GitHub repo size](https://img.shields.io/github/repo-size/reallinshengxiang/XJTU-Coursework)
+![GitHub last commit](https://img.shields.io/github/last-commit/reallinshengxiang/XJTU-Coursework)
 
-## Courses List
+This repository archives my coursework, including labs, homework, and projects, from key computer-related and fundamental courses during my undergraduate studies at Xi'an Jiaotong University (XJTU).  
+
+## 📚 Courses List 
 |Seme.|CourseID|CourseName|
 |---|---|---|
 |22fall|COMP250205|[Fundamentals of Programming](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Fundamentals-of-Programming)|
@@ -21,3 +23,13 @@ This is a repo for some important computer-related courses Labs/Homework/Tasks/.
 |25spring|COMP461405|[Database](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Database)|    
 |25spring|COMP501227|[Rust Language Programming](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Rust-Language-Programming)|      
 |25summer|PRAC400205|[Huawei Software Boot Camp](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Huawei-Software-Boot-Camp)|      
+---
+
+### ℹ️ Note on Repository Structure
+
+This repository uses **branches** to organize content for different courses. Please navigate to the specific branch linked in the table above to view the materials for each course.
+
+### ⚠️ Disclaimer
+
+This repository is intended for **reference and educational purposes only**. Please do not directly copy the code for your academic assignments. Adhere to your institution's academic integrity policy.
+ 
