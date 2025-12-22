@@ -28,6 +28,7 @@ This repository archives my coursework, including labs, homework, and projects, 
 |25spring|COMP461405|[Database](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Database)|    
 |25spring|COMP501227|[Rust Language Programming](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Rust-Language-Programming)|      
 |25summer|PRAC400205|[Huawei Software Boot Camp](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Huawei-Software-Boot-Camp)|      
+|25fall|COMP550105|[Fundamentals of Optimization Methods](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Fundamentals-of-Optimization-Methods)|   
 ---
 
 ### ℹ️ Note on Repository Structure
