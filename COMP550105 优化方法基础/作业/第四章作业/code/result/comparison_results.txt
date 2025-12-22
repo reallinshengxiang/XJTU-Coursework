@@ -1,0 +1,28 @@
+OPTIMIZATION RESULTS COMPARISON
+==================================================
+Problem dimensions: n=100, p=30
+Matrix A rank: 30 (full rank: True)
+
+Optimal objective values:
+Standard Newton: -3.32809856e+01
+Infeasible Newton (x_hat): -3.32809856e+01
+Infeasible Newton (all-ones): -3.32809856e+01
+Dual Newton: -3.32809856e+01
+
+Solution differences:
+||x_a - x_b1|| = 1.20e-13
+||x_a - x_b2|| = 1.20e-13
+||x_a - x_c|| = 1.20e-13
+||x_b1 - x_c|| = 1.06e-15
+
+Feasibility check (||Ax - b||):
+Standard Newton: 5.80e-15
+Infeasible Newton (x_hat): 6.17e-15
+Infeasible Newton (all-ones): 7.91e-15
+Dual Newton: 8.57e-15
+
+Iteration counts:
+Standard Newton method: 7
+Infeasible Newton (x_hat): 7
+Infeasible Newton (all-ones): 7
+Dual Newton method: 6

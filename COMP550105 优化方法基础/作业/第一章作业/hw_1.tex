@@ -1,0 +1,267 @@
+% ===============================================
+% MATH 3053: Abstract Algebra I         Fall 2017
+% hw_revised_cn.tex
+% 中文适配版作业修订提交模板
+% ===============================================
+%         请仔细阅读以下说明！！！
+% ===============================================
+% 生成PDF提交时，将文件名改为 hwX-姓名.pdf
+% X替换为作业编号，姓名替换为你的姓氏
+% ===============================================
+
+
+% -----------------------------------------------
+% 以下序言部分可忽略，直接跳至 "START HERE" 区域
+% -----------------------------------------------
+
+\documentclass{article}
+% 页面设置与基础宏包
+\usepackage[margin=1in]{geometry}  % 页边距1英寸
+\usepackage{amsmath,amsthm,amssymb} % 数学公式、定理环境、符号
+\usepackage{ctex}   % 中文支持核心宏包（Overleaf预装）
+\usepackage{pifont}                 
+\renewcommand{\qedsymbol}{}
+% 常用数学集合符号定义
+\newcommand{\R}{\mathbb{R}}  % 实数集
+\newcommand{\Z}{\mathbb{Z}}  % 整数集
+\newcommand{\N}{\mathbb{N}}  % 自然数集
+\newcommand{\Q}{\mathbb{Q}}  % 有理数集
+\newcommand{\C}{\mathbb{C}}  % 复数集
+
+% 定理、习题等环境定义（支持中英文标注）
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% 中文"问题"环境（与原problem并存，可按需选用）
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem_cn}[2][问题]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+% 解答环境（支持中英文标注）
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{solution_cn}{%
+  \begin{proof}[解答]%
+  \kaishu  % 切换中文为楷体（ctex 提供的命令）
+}{%
+  \end{proof}%
+}
+
+\begin{document}
+
+% ------------------------------------------ %
+%                 从这里开始编辑                 %
+% ------------------------------------------ %
+
+% 标题与作者信息（中文适配）
+\title{《优化方法基础》课程作业\\凸集和凸函数}  % X替换为作业编号
+\author{姓名：林圣翔 \quad 班级：计试2201 \quad 学号：2223312202}  % 替换括号内容
+
+\maketitle
+
+\begin{problem_cn}{1}
+证明：范数$\boldsymbol{\|\cdot\|}$的对偶范数满足满足范数的定义：  
+$$\|z\|_* = \sup \left\{ z^T x : \|x\| \leq 1 \right\} = \sup \left \{ z^T x : \|x\| = 1 \right\}$$ 
+\end{problem_cn}
+\begin{solution_cn} 
+\quad \\1.证明： $\sup \left\{ z^T x : \|x\| \leq 1 \right\} = \sup \left \{ z^T x : \|x\| = 1 \right\}$ \\
+记$A = \sup\left\{ z^T x : \|x\| \leq 1 \right\},\quad B = \sup\left\{ z^T x : \|x\| = 1 \right\}$\\
+$\because \{x : \|x\| = 1 \} \subset \{x : \|x\| \leq 1\} \quad \therefore B \leq A$\\
+$\forall x \in \{x : \|x\| \leq 1\}$，分两种情况：\\ \ding{172} 若$x = 0$：$z^T x = 0 \leq B$；\\
+\ding{173} 若$x \neq 0$：令$x' = \frac{x}{\|x\|}$，由原范数正齐次性得$\|x'\| = 1$，则
+  $ z^T x = \|x\| \cdot z^T x' \leq \|x\| \cdot B$ \\
+  又$\|x\| \leq 1$，故$z^T x \leq B$。
+综上，对所有$\|x\| \leq 1$均有$z^T x \leq B$，即$A \leq B$\\
+2.验证范数的四个条件\\
+2.1.非负性，$\forall z \in \mathbb{R}^n$，$\|z\|_* \geq 0$
+\\由定义，$| z |_* = \sup { z^T x : | x | \leq 1 }$，由于 $z^T x$ 是实数，上确界存在且非负。\\ 若 $z = 0$，则 $z^T x = 0$ 对所有 $x$ 成立，故 $| z |_* = 0$。 \\若 $| z |_* = 0$，则 $z^T x = 0$ 对所有 $| x | \leq 1$ 成立。特别地，取 $x = z / | z |$（若 $z \neq 0$），则 $z^T x = | z | > 0$，矛盾。故 $z = 0$。\\
+$\therefore$ $\forall z \in \mathbb{R}^n$，$\|z\|_* \geq 0$,即$\|z\|_*$满足非负性\\
+2.2.正定性：若$\|z\|_* = 0$，则$z = 0$\\
+必要性：若$z = 0$，则对任意$x$，$z^T x = 0$，故$\|z\|_* = \sup\{0\} = 0$。\\
+充分性：若$\|z\|_* = 0$，则对所有$\|x\| \leq 1$，$z^T x \leq 0$。  \\
+  假设$z \neq 0$，取$x_0 = \frac{z}{\|z\|}$（由原范数齐次性，$\|x_0\| = 1$），则$
+  z^T x_0 = \frac{z^T z}{\|z\|} = \frac{\|z\|^2}{\|z\|} = \|z\| > 0 $
+  与“$z^T x \leq 0$对所有$\|x\| \leq 1$成立”矛盾，故$z = 0$。\\
+2.3.齐次性：$\forall z \in \mathbb{R}^n$，$\forall t \in \mathbb{R}$，$\|tz\|_* = |t| \|z\|_*$
+\begin{flushleft}
+$\begin{aligned}
+\|tz\|_* &= \sup \left\{ (tz)^T x : \|x\| \leq 1 \right\} \\
+&= \sup \left\{ t \cdot z^T x : \|x\| \leq 1 \right\} \\
+&= |t| \cdot \sup \left\{ z^T x : \|x\| \leq 1 \right\} \\
+&= |t| \|z\|_*
+\end{aligned}$
+\end{flushleft}
+2.4.三角不等式：$\forall z_1, z_2 \in \mathbb{R}^n$，$\|z_1 + z_2\|_* \leq \|z_1\|_* + \|z_2\|_*$
+\begin{flushleft}
+$\begin{aligned}
+\|z_1 + z_2\|_* &= \sup \left\{ (z_1 + z_2)^T x : \|x\| \leq 1 \right\} \\
+&= \sup \left\{ z_1^T x + z_2^T x : \|x\| \leq 1 \right\}
+\end{aligned}$
+\end{flushleft}
+对任意$\|x\| \leq 1$，由对偶范数定义：
+$z_1^T x \leq \|z_1\|_*, \quad z_2^T x \leq \|z_2\|_*$\\
+$\therefore$ $z_1^T x + z_2^T x \leq \|z_1\|_* + \|z_2\|_*$，即$\|z_1 + z_2\|_* \leq \|z_1\|_* + \|z_2\|_*$。\\
+综上，范数$\boldsymbol{\|\cdot\|}$的对偶范数满足满足范数的定义： $\|z\|_* = \sup \left\{ z^T x : \|x\| \leq 1 \right\} = \sup \left \{ z^T x : \|x\| = 1 \right\}$ 
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{2}
+证明： $$z^T x \leq \|x\| \|z\|_*$$  
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\$\because \quad \|z\|_* = \sup\!\{ z^T x : \|x\| \leq 1 \} = \sup\!\{ z^T x : \|x\| = 1 \} = \sup\!\left\{ z^T \frac{x}{\|x\|} : \|x\| = 1 \right\}$\\
+$\therefore\quad \|z\|_* \geq z^T \frac{x}{\|x\|}$\\
+$\therefore\quad z^T x \leq \|x\| \|z\|_*$ 
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{3}
+ \( f: \mathbb{R}^n \to \mathbb{R} \),  
+$$ f(x) = \log \sum_{i=1}^m \exp\left( a_i^\top x + b_i \right), $$  
+其中 \( a_1, a_2, \dots, a_m \in \mathbb{R}^n \)，\( b_1, b_2, \dots, b_m \in \mathbb{R} \)。 
+\begin{enumerate}
+\item 求函数 \( f \) 的梯度 \( \nabla f(x) \)；  
+\item 求函数 \( f \) 的二阶导数（Hessian 矩阵）\( \nabla^2 f(x) \)。  
+\end{enumerate}
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\
+1.设 $S(x) = \sum_{i=1}^m \exp\left(a_i^\top x + b_i\right)$,则函数可表示为$f(x) = \log S(x)$ \\
+对 \( f(x) \) 求梯度，利用链式法则，有$\nabla f(x) = \frac{1}{S(x)} \nabla S(x)$,其中 $\nabla S(x) = \sum_{i=1}^m \exp\left(a_i^\top x + b_i\right) a_i $ \\
+$\therefore$函数\( f \)的梯度为 $\nabla f(x) = \frac{\sum_{i=1}^m \exp\left(a_i^\top x + b_i\right) a_i}{\sum_{i=1}^m \exp\left(a_i^\top x + b_i\right)}$ \\
+2.Hessian矩阵是梯度的导数：$\nabla^2 f(x) = \nabla \left( \nabla f(x) \right)$\\
+由梯度表达式$\nabla f(x) = \frac{\nabla S(x)}{S(x)}$，可得：$\nabla^2 f(x) = \frac{S(x) \cdot \nabla^2 S(x) - \nabla S(x) \cdot \left( \nabla S(x) \right)^\top}{S(x)^2}$\\
+$\nabla^2 S(x) = \sum_{i=1}^m \exp\left( a_i^\top x + b_i \right) \cdot a_i a_i^\top$ \\
+代入得 Hessian 矩阵，可得：$ \nabla^2 f(x) = \frac{1}{S(x)^2} \left[ S(x) \cdot \sum_{i=1}^m \exp\left( a_i^\top x + b_i \right) a_i a_i^\top - \nabla S(x) \cdot \left( \nabla S(x) \right)^\top \right]$\\
+利用权重函数 \( w_i(x) \)，有$\frac{\exp\left(a_i^\top x + b_i\right)}{S(x)} = w_i(x)$\\
+$\therefore$函数 \( f \) 的二阶导数（Hessian 矩阵）$\nabla^2 f(x) = \sum_{i=1}^m w_i(x) \, a_i a_i^\top - \left( \sum_{i=1}^m w_i(x) \, a_i \right) \left( \sum_{i=1}^m w_i(x) \, a_i \right)^\top$
+
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{4}
+令 \( A \in \mathbb{R}^{m \times n} \)，\( B \in \mathbb{R}^{p \times n} \)，\( b \in \mathbb{R}^m \)，\( d \in \mathbb{R}^p \)，集合：  
+$$ P = \left\{ x \in \mathbb{R}^n : Ax \leq b \text{ 且 } Bx = d \right\} $$  
+是凸集吗？为什么？
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\
+1.线性不等式约束\\
+由于 \( x, y \in P \)，有 \( Ax \leq b \) 和 \( Ay \leq b \)。  
+则  
+\begin{flushleft}
+$\begin{aligned}
+Az &= A\bigl(tx + (1-t)y\bigr) \\
+&= t\,Ax + (1-t)\,Ay \\
+&\leq t\,b + (1-t)\,b \\
+&= b,
+\end{aligned}
+$\end{flushleft}
+$\therefore$ \( z \) 满足不等式约束。\\  
+2. 线性等式约束\\
+由于 \( x, y \in P \)，有 \( Bx = d \) 和 \( By = d \)。  
+则  
+\begin{flushleft}
+$\begin{aligned}
+Bz &= B\bigl(tx + (1-t)y\bigr) \\
+&= t\,Bx + (1-t)\,By \\
+&= t\,d + (1-t)\,d \\
+&= d,
+\end{aligned}
+$\end{flushleft}
+$\therefore$ \( z \) 满足等式约束。 \\
+综上，P是凸集。
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{5}
+证明：最大值函数 \( f(x) = \max\left\{ x_1, x_2, \dots, x_n \right\} \)，\( x = [x_1, x_2, \dots, x_n]^\top \in \mathbb{R}^n \)为凸函数。
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\设 \( z = tx + (1-t)y \)，则对每个分量 \( i = 1, \dots, n \)，有$z_i = t x_i + (1-t) y_i$\\
+令 \( f(x) = \max\{x_1, \dots, x_n\} = x_k \)（其中 \( x_k \) 是 \( x \) 的最大分量）， \( f(y) = \max\{y_1, \dots, y_n\} = y_l \)（其中 \( y_l \) 是 \( y \) 的最大分量）。  
+此时，不等式右边为：$t f(x) + (1-t) f(y) = t x_k + (1-t) y_l$\\
+考虑左边 \( f(z) \)：$f(z) = \max\{z_1, \dots, z_n\} = \max\bigl\{ t x_i + (1-t) y_i \mid i = 1, \dots, n \bigr\}$\\
+$\because$对任意 \( i \)， \( x_i \leq x_k \) 且 \( y_i \leq y_l \)，$\therefore$ $t x_i + (1-t) y_i \leq t x_k + (1-t) y_l$\\
+由于最大值是各分量的上确界，有：$f(z) = \max\bigl\{ t x_i + (1-t) y_i \mid i = 1, \dots, n \bigr\} \leq t x_k + (1-t) y_l$\\
+代入右边的表达式，得$f(z) \leq t f(x) + (1-t) f(y)$\\
+故凸函数的定义式成立\\
+$\therefore$ \( f \) 是凸函数。 
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{6}
+对于凸优化问题：  
+\[
+\begin{split}
+\min \quad & f(x) \\
+\text{s.t.} \quad & x \in X
+\end{split}
+\]  
+如果目标函数f是可微的，可行解 \( x^* \in X \) 是最优解当且仅当 $\forall$ \( y \in X \)，有  
+\[
+\nabla f(x^*)^\top (y - x^*) \geq 0
+\]  
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\必要性\\
+假设 \( x^* \) 是最优解。对任意 \(y \in X \)，考虑函数 $\varphi(t) = f\bigl( x^* + t(y - x^*) \bigr), \quad t \in [0,1]$\\
+由于 \( X \) 是凸集，对任意 \( t \in [0,1] \)，有 \( x^* + t(y - x^*) \in X \)。\\因 \( f \) 在 \( x^* \) 处可微，且 \( x^* \) 是最小值点，故 \( \varphi(t) \) 在 \( t=0 \) 处取得最小值，从而$ \varphi'(0) \geq 0$\\
+$\because \varphi'(0) = \nabla f(x^*)^\top (y - x^*)$\\
+$\therefore \nabla f(x^*)^\top (y - x^*) \geq 0$,必要性得证。\\
+充分性\\
+假设对任意 \( y \in X \)，有$\nabla f(x^*)^\top (y - x^*) \geq 0$\\
+由于 \( f \) 是凸函数，对任意 \( y \in X \)，由可微凸函数的一阶性质，有$f(y) \geq f(x^*) + \nabla f(x^*)^\top (y - x^*)$\\
+结合假设的不等式 \( \nabla f(x^*)^\top (y - x^*) \geq 0 \)，可得：  
+$f(y) \geq f(x^*) + \nabla f(x^*)^\top (y - x^*) \geq f(x^*)$,  
+即 \( f(y) \geq f(x^*) \)。
+\\故 \( x^* \) 是最优解，充分性得证。\\
+综上，$\forall y \in X,\ \nabla f(x^*)^\top (y - x^*) \geq 0$,结论成立
+
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{7}
+证明 \( x^* = \left( 1, \dfrac{1}{2}, -1 \right)^\top \) 是如下凸优化问题的最优解：  
+\[
+\begin{split}
+\min \quad & \dfrac{1}{2} x^\top P x + q^\top x + r \\
+\text{s.t.} \quad & -1 \leq x_i \leq 1, \ i=1,2,3
+\end{split}
+\]  
+其中：  
+\[
+P = \begin{bmatrix} 13 & 12 & -2 \\ 12 & 17 & 6 \\ -2 & 6 & 12 \end{bmatrix}, \quad q = \begin{bmatrix} -22 \\ -14.5 \\ 13 \end{bmatrix}, \quad r = 1
+\]  
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\
+二次函数 \( f(x) = \dfrac{1}{2} x^\top P x + q^\top x + r \) 的凸性等价于矩阵 \( P \) 的正定性。\\
+一阶主子式：\( \Delta_1 = 13 > 0 \)\\
+二阶主子式：$\Delta_2 = \begin{vmatrix} 13 & 12 \\ 12 & 17 \end{vmatrix} = 77 > 0$\\
+三阶主子式 ：$\det(P) = 13 \times \begin{vmatrix} 17 & 6 \\ 6 & 12 \end{vmatrix} - 12 \times \begin{vmatrix} 12 & 6 \\ -2 & 12 \end{vmatrix} + (-2) \times \begin{vmatrix} 12 & 17 \\ -2 & 6 \end{vmatrix} = 100 > 0$\\
+$\because$所有顺序主子式均为正\\$\therefore$ \( P \) 正定，\( f(x) \) 是\textbf{严格凸函数}。\\$\therefore$约束集 \( \{-1 \leq x_i \leq 1, \, i=1,2,3\} \) 为凸集，因此原问题是\textbf{严格凸优化问题}，最优解若存在则唯一。\\
+$\because$ $x_1 = 1 \in [-1,1], \quad x_2 = \dfrac{1}{2} \in [-1,1], \quad x_3 = -1 \in [-1,1]$\\
+$\therefore$ \( x^* \) 是可行解。  \\
+$\because$
+$
+x^* = \begin{bmatrix} 1 \\ \dfrac{1}{2} \\ -1 \end{bmatrix}, \quad 
+P = \begin{bmatrix} 13 & 12 & -2 \\ 12 & 17 & 6 \\ -2 & 6 & 12 \end{bmatrix}, \quad 
+q = \begin{bmatrix} -22 \\ -14.5 \\ 13 \end{bmatrix}
+$ \\
+$\therefore$
+$
+\nabla f(x^*) = P x^* + q = = \begin{bmatrix} -1 \\ 0 \\ 2 \end{bmatrix}$\\
+对于 \( x_1 = 1 \)（上界）,$\dfrac{\partial f}{\partial x_1} = -1 \leq 0$,满足上界梯度分量小于等于0的条件\\
+对于 \( x_2 = \dfrac{1}{2} \)（内部），$\dfrac{\partial f}{\partial x_2} = 0$,满足内部梯度分量等于0的条件\\
+对于 \( x_3 = -1 \)（下界），$\dfrac{\partial f}{\partial x_3} = 2 \geq 0$,满足下界梯度分量大于等于0的条件\\
+综上，\( x^* = \left( 1, \dfrac{1}{2}, -1 \right)^\top \) 是该凸优化问题的最优解
+
+
+\end{solution_cn}
+% -----------------------------------------------
+% 以下内容无需编辑
+% -----------------------------------------------
+
+\end{document}

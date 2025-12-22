@@ -1,0 +1,260 @@
+% ===============================================
+% MATH 3053: Abstract Algebra I         Fall 2017
+% hw_revised_cn.tex
+% 中文适配版作业修订提交模板
+% ===============================================
+%         请仔细阅读以下说明！！！
+% ===============================================
+% 生成PDF提交时，将文件名改为 hwX-姓名.pdf
+% X替换为作业编号，姓名替换为你的姓氏
+% ===============================================
+
+
+% -----------------------------------------------
+% 以下序言部分可忽略，直接跳至 "START HERE" 区域
+% -----------------------------------------------
+
+\documentclass{article}
+% 页面设置与基础宏包
+\usepackage[margin=1in]{geometry}  % 页边距1英寸
+\usepackage{amsmath,amsthm,amssymb} % 数学公式、定理环境、符号
+\usepackage{ctex}   % 中文支持核心宏包（Overleaf预装）
+\usepackage{pifont}                 
+\renewcommand{\qedsymbol}{}
+\usepackage{booktabs}
+\usepackage{graphicx} 
+\usepackage{array}
+% 常用数学集合符号定义
+\newcommand{\R}{\mathbb{R}}  % 实数集
+\newcommand{\Z}{\mathbb{Z}}  % 整数集
+\newcommand{\N}{\mathbb{N}}  % 自然数集
+\newcommand{\Q}{\mathbb{Q}}  % 有理数集
+\newcommand{\C}{\mathbb{C}}  % 复数集
+%代码框
+% 代码框与语法高亮所需宏包
+\usepackage{listings}    % 核心代码框宏包
+\usepackage{xcolor}      % 支持颜色，用于语法高亮
+\usepackage{geometry}    % 可选，调整页面边距，避免代码溢出
+\usepackage{float} 
+% 配置Python语法高亮样式
+\lstset{
+    language=Python,             % 指定代码语言为Python
+    basicstyle=\ttfamily\small,  % 基础字体：等宽字体+小字号
+    keywordstyle=\color{blue},   % 关键字颜色（如if/for/def）
+    commentstyle=\color{gray},   % 注释颜色
+    stringstyle=\color{green},   % 字符串颜色
+    numbers=left,                % 行号显示在左侧
+    numberstyle=\tiny\color{gray},% 行号样式：小字号+灰色
+    frame=tb,                    % 代码框：上下边框（t=top, b=bottom）
+    tabsize=4,                   % 制表符宽度（匹配Python标准）
+    showstringspaces=false,      % 不显示字符串中的空格标记
+    breaklines=true,             % 自动换行（避免代码溢出）
+    breakatwhitespace=false,     % 可在非空格处换行（保证代码完整性）
+    escapeinside={\%*}{*)},      % 可选，支持在代码中插入LaTeX命令
+    captionpos=t,                % 标题位置在代码框顶部
+    abovecaptionskip=0.5em,      % 标题与代码框的间距
+    belowskip=1em                % 代码框与下文的间距
+}
+% 定理、习题等环境定义（支持中英文标注）
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% 中文"问题"环境（与原problem并存，可按需选用）
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem_cn}[2][问题]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+% 解答环境（支持中英文标注）
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{solution_cn}{%
+  \begin{proof}[解答]%
+  \kaishu  % 切换中文为楷体（ctex 提供的命令）
+}{%
+  \end{proof}%
+}
+
+\begin{document}
+
+% ------------------------------------------ %
+%                 从这里开始编辑                 %
+% ------------------------------------------ %
+
+% 标题与作者信息（中文适配）
+\title{《优化方法基础》课程作业\\等式不等式约束优化问题}  % X替换为作业编号
+\author{姓名：林圣翔 \quad 班级：计试2201 \quad 学号：2223312202}  % 替换括号内容
+
+\maketitle
+
+\begin{problem_cn}{1}
+总结以下不等式约束凸优化问题的求解方法及相互联系
+\[
+\begin{aligned}
+&\min && f_0(x) \\
+&\text{s.t.} && f_i(x) \leq 0,\, i = 1,2,\cdots, m \\
+&&& Ax = b
+\end{aligned}
+\]
+
+\begin{itemize}
+    \item 定义域 \( D = \bigcap_{i=0}^m \text{dom}\, f_i \);
+    \item \( A \in \mathbb{R}^{p \times n} \)，\(\text{rank}(A) = p < n \);
+    \item 函数 \( f_i: \mathbb{R}^n \to \mathbb{R} \, (i = 0,\cdots, m) \) 为二次连续可微凸函;
+    \item \( p^* = \inf \{ f_0(x) : Ax = b,\, f_i(x) \leq 0,\, i = 1,\cdots, m \} = f(x^*) \)
+\end{itemize}
+\end{problem_cn}
+\begin{solution_cn} 
+\quad \\1.障碍方法
+
+障碍方法将不等式约束转化为障碍函数，从而将原问题转化为一系列等式约束优化问题。\\
+1.1.障碍函数
+
+使用对数障碍函数近似示性函数：$ \phi(x) = -\sum_{i=1}^m \log\bigl(-f_i(x)\bigr)$ 
+
+近似示性函数为 \(\hat{I}(u) = -\dfrac{1}{t} \log\bigl(-u\bigr)\)。\\
+1.2.近似问题
+
+对于参数 \(t > 0\)，求解$\min\ t f_0(x) + \phi(x) \quad \text{s.t.} \quad A x = b $ 。
+
+该问题所得的解 \(x^*(t)\) 称为中心点。\\
+1.3.中心路径
+
+中心点 \(x^*(t)\) 满足严格可行性（\(A x^*(t) = b,\ f_i(x^*(t)) < 0\)）和最优性条件：  
+  \[
+  t \nabla f_0\bigl(x^*(t)\bigr) + \sum_{i=1}^m \frac{1}{-f_i\bigl(x^*(t)\bigr)} \nabla f_i\bigl(x^*(t)\bigr) + A^\top v = 0
+  \]  
+
+从中心点可导出对偶变量 \(\lambda_i^*(t) = \frac{1}{-t f_i\bigl(x^*(t)\bigr)} > 0\)，且对偶间隙满足：  
+  \[
+  f_0\bigl(x^*(t)\bigr) - p^* \leq \frac{m}{t}
+  \]  
+1.4.算法流程
+
+1) 初始化：找到严格可行点 \( x \)（满足 \( f_i(x) < 0 \) 和 \( Ax = b \)），设置 \( t = t^0 > 0 \)，\( \mu > 1 \)，\( \epsilon > 0 \)。
+
+2) 中心点步骤：求解 $x^*(t) = \arg\min\ \ t f_0(x) + \phi(x) \quad \text{s.t.} \quad Ax = b$  
+
+3) 停止准则：如果 \( \dfrac{m}{t} \leq \epsilon \)，退出；否则，令 \( x = x^*(t) \)，\( t = \mu t \)，重复。  
+
+障碍方法通过逐渐增大 \( t \) 来逼近最优解，每个子问题需精确求解，计算成本较高。\\
+2.原对偶内点法
+
+原对偶方法同时更新原变量和对偶变量，直接求解修改的KKT条件，通常更高效。\\
+2.1.修改的KKT条件
+
+对于参数 \( t \)，中心路径点满足：$
+\begin{cases}
+\nabla f_0(x) + \sum_{i=1}^m \lambda_i \nabla f_i(x) + A^\top v = 0 \\
+-\lambda_i f_i(x) = \dfrac{1}{t}, \quad i=1,\dots,m \\
+Ax = b
+\end{cases}$\\
+2.2.定义残差  
+\begin{align*}
+r_{\text{dual}} &= \nabla f_0(x) + Df(x)^\top \lambda + A^\top v, \\
+r_{\text{cent}} &= -\mathop{\text{diag}}(\lambda) f(x) - \dfrac{1}{t} \mathbf{1}, \\
+r_{\text{prim}} &= Ax - b
+\end{align*}
+
+其中 \( Df(x) \) 是 \( f(x) = [f_1(x), \dots, f_m(x)]^\top \) 的雅可比矩阵。\\ 
+2.3.搜索方向
+
+原对偶搜索方向 \( \Delta y_{\text{pd}} = (\Delta x_{\text{pd}}, \Delta \lambda_{\text{pd}}, \Delta v_{\text{pd}}) \) 通过求解线性系统得到：  
+    \[
+    \begin{bmatrix}
+    \nabla^2 f_0(x) + \sum_i \lambda_i \nabla^2 f_i(x) & Df(x)^\top & A^\top \\
+    -\mathop{\text{diag}}(\lambda) Df(x) & -\mathop{\text{diag}}(f(x)) & 0 \\
+    A & 0 & 0
+    \end{bmatrix}
+    \begin{bmatrix}
+    \Delta x \\
+    \Delta \lambda \\
+    \Delta v
+    \end{bmatrix}
+    =
+    -\begin{bmatrix}
+    r_{\text{dual}} \\
+    r_{\text{cent}} \\
+    r_{\text{prim}}
+    \end{bmatrix}
+    \]  
+2.4.代理对偶间隙
+
+定义 \( \eta(x, \lambda) = -f(x)^\top \lambda \)。若 \( x \) 原可行且 \( \lambda, v \) 对偶可行，则 \( \eta(x, \lambda) \) 为对偶间隙。\\  
+2.5.算法流程  
+
+1) 初始化：找到 \( x \) 满足 \( f_i(x) < 0 \)（\( i=1,\dots,m \)），\( \lambda > 0 \)，设置 \( \mu > 1 \)，\( \epsilon_{\text{feas}} > 0 \)，\( \epsilon > 0 \)。  
+  
+2) 确定步长参数：\( t = \dfrac{\mu \cdot m}{\eta(x, \lambda)} \);
+
+\quad 计算原对偶搜索方向 \( \Delta y_{\text{pd}} \);
+
+\quad 直线搜索确定步长 \( s \)，更新变量组 \( y = (x, \lambda, v) \leftarrow y + s \cdot \Delta y_{\text{pd}} \)。
+  
+3) 停止准则：当 \( \| r_{\text{prim}} \|_2 \leq \epsilon_{\text{feas}} \)、\( \| r_{\text{dual}} \|_2 \leq \epsilon_{\text{feas}} \)，且 \( \eta(x, \lambda) \leq \epsilon \) 时，退出；否则返回步骤2。\\
+原对偶方法无需精确求解子问题，迭代点未必可行，但通过牛顿法快速收敛（通常呈超线性收敛）。\\
+3.寻找严格可行初始点(不可行初始点牛顿方法)
+
+上面使用的障碍方法和原对偶内点法需要一个满足 \( f_i(x) < 0 \) 且 \( Ax = b \) 的严格可行初始点。若此类点未知，需通过如下方式寻找。  
+
+情况1：已知 \( x^0 \in \bigcap_{i=0}^m \mathop{\text{dom}} f_i \) 满足 \( A x^0 = b \)，但可能不满足 \( f_i(x) < 0 \)。  
+求解辅助问题：  
+\[
+\begin{cases}
+\min_{s, \, x} \quad s \\
+\text{s.t.} \quad f_i(x) \leq s \quad (i=1,2,\dots,m), \\
+\quad\quad\,\, A x = b
+\end{cases}
+\]  
+若最优值 \( s^* < 0 \)，则对应的 \( x^* \) 是严格可行点（因 \( f_i(x^*) \leq s^* < 0 \)）。
+
+情况2：已知 \( x^0 \in \bigcap_{i=0}^m \mathop{\text{dom}} f_i \)，但不满足 \( A x^0 = b \)。  
+  求解辅助问题：  
+  \[
+  \begin{cases}
+  \min_{s, \, x} \quad f_0(x) \\
+  \text{s.t.} \quad f_i(x) \leq s \quad (i=1,2,\dots,m), \\
+  \quad\quad\,\, A x = b, \quad s = 0
+  \end{cases}
+  \]  
+  \textbf{使用障碍方法求解}（取初始参数 \( t^0 > 0 \)）：  
+  \[
+  \min_{s, \, x} \quad t^0 f_0(x) - \sum_{i=1}^m \log\bigl(s - f_i(x)\bigr) 
+  \quad \text{s.t.} \quad A x = b, \,\, s = 0
+  \]   
+
+情况3：不能在函数公共定义域 \( D = \bigcap_{i=0}^m \mathop{\text{dom}} f_i \) 中确定一点。  
+  引入辅助变量 \( z_0, z_1, \dots, z_m \)，求解辅助问题：  
+  \[
+  \begin{cases}
+  \min_{\substack{s, \, x, \, z_0, \dots, z_m}} \quad f_0(x + z_0) \\
+  \text{s.t.} \quad f_i(x + z_i) \leq s \quad (i=1,2,\dots,m), \\
+  \quad\quad\,\, A x = b, \quad s = 0, \quad z_0 = 0, \,\,\dots,\,\, z_m = 0
+  \end{cases}
+  \]  
+  \textbf{使用障碍方法求解}（取初始参数 \( t^0 > 0 \)）：  
+  \[
+  \min_{\substack{s, \, x, \, z_0, \dots, z_m}} \quad t^0 f_0(x + z_0) - \sum_{i=1}^m \log\bigl(s - f_i(x + z_i)\bigr) 
+  \quad \text{s.t.} \quad A x = b, \,\, s = 0, \,\, z_i = 0 \,\, (i=0,1,\dots,m)
+  \]  \\
+相互联系
+
+1) 两者都是内点法，依赖于对数障碍函数和中心路径概念,中心路径是连接严格可行点与最优点的路径，参数t控制逼近精度。
+
+2) 如果初始点不是严格可行的，两者都需要寻找严格可行初始点，求解过程中通过引入松弛变量或辅助变量确保可行性。
+
+3）障碍方法通过求解一系列优化问题沿中心路径移动，对每个t精确求解子问题，对偶变量从中心点导出；原对偶方法直接求解修改的KKT条件，同时更新原变量和对偶变量，搜索方向由牛顿法确定，更高效且无需子问题精确解。
+
+4) 在障碍方法中，对偶间隙为 \( \dfrac{m}{t} \)；在原对偶方法中，代理对偶间隙 \( \eta(x, \lambda) \) 用于控制停止准则。
+\end{solution_cn}
+% -----------------------------------------------
+% 以下内容无需编辑
+% -----------------------------------------------
+
+\end{document}
