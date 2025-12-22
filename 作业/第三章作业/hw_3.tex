@@ -1,0 +1,298 @@
+% ===============================================
+% MATH 3053: Abstract Algebra I         Fall 2017
+% hw_revised_cn.tex
+% 中文适配版作业修订提交模板
+% ===============================================
+%         请仔细阅读以下说明！！！
+% ===============================================
+% 生成PDF提交时，将文件名改为 hwX-姓名.pdf
+% X替换为作业编号，姓名替换为你的姓氏
+% ===============================================
+
+
+% -----------------------------------------------
+% 以下序言部分可忽略，直接跳至 "START HERE" 区域
+% -----------------------------------------------
+
+\documentclass{article}
+% 页面设置与基础宏包
+\usepackage[margin=1in]{geometry}  % 页边距1英寸
+\usepackage{amsmath,amsthm,amssymb} % 数学公式、定理环境、符号
+\usepackage{ctex}   % 中文支持核心宏包（Overleaf预装）
+\usepackage{pifont}                 
+\renewcommand{\qedsymbol}{}
+% 常用数学集合符号定义
+\newcommand{\R}{\mathbb{R}}  % 实数集
+\newcommand{\Z}{\mathbb{Z}}  % 整数集
+\newcommand{\N}{\mathbb{N}}  % 自然数集
+\newcommand{\Q}{\mathbb{Q}}  % 有理数集
+\newcommand{\C}{\mathbb{C}}  % 复数集
+
+% 定理、习题等环境定义（支持中英文标注）
+\newenvironment{theorem}[2][Theorem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{lemma}[2][Lemma]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{exercise}[2][Exercise]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+% 中文"问题"环境（与原problem并存，可按需选用）
+\newenvironment{problem}[2][Problem]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{problem_cn}[2][问题]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{question}[2][Question]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+\newenvironment{corollary}[2][Corollary]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+% 解答环境（支持中英文标注）
+\newenvironment{solution}{\begin{proof}[Solution]}{\end{proof}}
+\newenvironment{solution_cn}{%
+  \begin{proof}[解答]%
+  \kaishu  % 切换中文为楷体（ctex 提供的命令）
+}{%
+  \end{proof}%
+}
+
+\begin{document}
+
+% ------------------------------------------ %
+%                 从这里开始编辑                 %
+% ------------------------------------------ %
+
+% 标题与作者信息（中文适配）
+\title{《优化方法基础》课程作业\\无约束凸优化问题}  % X替换为作业编号
+\author{姓名：林圣翔 \quad 班级：计试2201 \quad 学号：2223312202}  % 替换括号内容
+
+\maketitle
+
+\begin{problem_cn}{1}
+假设函数$f$是满足$mI \leq \nabla^2 f(x) \leq MI$的强凸函数。令$d$为$x$处的下降方向。证明对于  
+$$
+0 < t \leq -\frac{\nabla f(x)^\top d}{M\|d\|_2^2}
+$$  
+回溯终止条件能够满足。
+\end{problem_cn}
+\begin{solution_cn} 
+\quad \\
+$\because$ \( f \) 是强凸函数且 Hessian 矩阵有上界 \( M \) \\
+$\therefore$ 根据Taylor展开和二次上界性质，有  
+$$
+f({x}^k + t{d}^k) \leq f({x}^k) + t\nabla f({x}^k)^\top {d}^k + \frac{M}{2} t^2 \|{d}^k\|_2^2
+$$  
+$\because$ 要满足回溯终止条件，只需证明
+$$
+f({x}^k) + t\nabla f({x}^k)^\top {d}^k + \frac{M}{2} t^2 \|{d}^k\|_2^2 \leq f({x}^k) + \alpha t\nabla f({x}^k)^\top {d}^k
+$$
+即
+$$
+t\nabla f({x}^k)^\top {d}^k + \frac{M}{2} t^2 \|{d}^k\|_2^2 \leq \alpha t\nabla f({x}^k)^\top {d}^k
+$$
+$\because$ \( t > 0 \) 和 \( \nabla f({x}^k)^\top {d}^k < 0 \)，两边除以 \( t \)：  
+$$
+\nabla f({x}^k)^\top {d}^k + \frac{M}{2} t \|{d}^k\|_2^2 \leq \alpha \nabla f({x}^k)^\top {d}^k
+$$  
+即 
+$$
+\frac{M}{2} t \|{d}^k\|_2^2 \leq (\alpha - 1)\nabla f({x}^k)^\top {d}^k
+$$  
+$\because$ \( \alpha -1< 0 \) \\
+$\therefore$
+$$
+t \leq \frac{2(\alpha -1)\nabla f({x}^k)^\top {d}^k}{M \|{d}^k\|_2^2}
+$$  
+$\because$ 取\( \alpha = 0.5 \)，代入可得
+$$
+t \leq -\frac{\nabla f({x}^k)^\top {d}^k}{M \|{d}^k\|_2^2}
+$$  
+$\therefore$当 \( 0 < t \leq -\dfrac{\nabla f({x}^k)^\top {d}^k}{M \|{d}^k\|_2^2} \) 时，回溯终止条件成立。  
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{2}
+min f(x)迭代求解最优性条件 $\nabla f(x^*) = 0$
+
+\textbf{假设:}
+
+$\checkmark$ 存在 $m,M$ 满足 $mI \leq \nabla^2 f(x) \leq MI$ $(\forall x \in S)$  
+    
+$\checkmark$ 存在常数 $\gamma, \tilde{\gamma} \in (0,1]$，使得 $\|x\| \geq \gamma \|x\|_2$，$\|x\|_* \geq \tilde{\gamma} \|x\|_2$  
+
+\textbf{证明：}
+
+1. 精确直线搜索时，非规范化最速下降方法的收敛性；  
+
+2. 回溯直线搜索时，非规范化最速下降方法的收敛性；  
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\
+1.证明.精确直线搜索时，非规范化最速下降方法的收敛性\\
+在精确直线搜索中，步长 \( t \) 被选择为最小化 \( f({x}^k + t{d}^k) \)。利用 \( f \) 的光滑性，有：  
+$$
+f({x}^k + t{d}^k) \leq f({x}^k) + t\nabla f({x}^k)^\top {d}^k + \frac{M}{2} t\|{d}^k\|_2^2.
+$$
+$\because$\( \|{d}^k\| \leq 1 \) , \( \|{x}\| \geq \gamma\|{x}\|_2 \) \\
+$\therefore$ \( \|{d}^k\|_2 \leq \frac{1}{\gamma} \)
+代入 \( \nabla f({x}^k)^\top {d}^k = -\|\nabla f({x}^k)\|_* \) 得
+$$
+f({x}^k + t{d}^k) \leq f({x}^k) - t\|\nabla f({x}^k)\|_* + \frac{M}{2\gamma^2} t^2.
+$$  
+$\because$ 通过精确直线搜索，最小化右侧关于 \( t \) 的二次函数，得到最优步长 \( t^* = \frac{\gamma^2 \|\nabla f({x}^k)\|_*}{M} \)\\
+$\therefore$ 可得
+$$
+f({x}^{k+1}) \leq f({x}^k) - \frac{\gamma^2}{2M} \|\nabla f({x}^k)\|_*^2.
+$$  
+$\because$ \( \|\nabla f({x}^k)\|_* \geq \tilde{\gamma} \|\nabla f({x}^k)\|_2 \) ,\(\|\nabla f({x}^k)\|_2^2 \geq 2m(f({x}^k) - p^*) \)\\
+$\therefore$ 可得
+$$
+f({x}^{k+1}) - p^* \leq f({x}^k) - p^* - \frac{\gamma^2}{2M} \tilde{\gamma}^2 \cdot 2m(f({x}^k) - p^*) = \left(1 - \frac{\gamma^2 \tilde{\gamma}^2 m}{M}\right)(f({x}^k) - p^*)
+$$  
+令 \( c = 1 - \frac{\gamma^2 \tilde{\gamma}^2 m}{M} < 1 \)，则
+$$
+f({x}^k) - p^* \leq c^k (f({x}^0) - p^*)
+$$
+$\therefore$精确直线搜索时，非规范化最速下降方法具备收敛性\\
+2.证明：回溯直线搜索时，非规范化最速下降方法的收敛性\\
+在回溯直线搜索中，步长 \( t \) 从 \( t = 1 \) 开始，并以因子 \( \beta \in (0,1) \) 减少，直到满足回溯终止条件
+$$
+f({x}^k + t{d}^k) \leq f({x}^k) + \alpha t \, \nabla f({x}^k)^\top {d}^k = f({x}^k) - \alpha t \, \|\nabla f({x}^k)\|_*,
+$$  
+其中 \( \alpha \in (0,1) \)。利用光滑性 
+$$
+f({x}^k + t{d}^k) \leq f({x}^k) - t\|\nabla f({x}^k)\|_* + \frac{M}{2\gamma^2} \, t^2
+$$
+$\because$为确保回溯终止条件满足，有
+$$
+f({x}^k) - t\|\nabla f({x}^k)\|_* + \frac{M}{2\gamma^2} \, t^2 \leq f({x}^k) - \alpha t \, \|\nabla f({x}^k)\|_*
+$$
+$\therefore$简化得
+$$
+\frac{M}{2\gamma^2} \, t^2 \leq (1 - \alpha) t \, \|\nabla f({x}^k)\|_*
+$$  
+$\therefore$当 \( t \leq \dfrac{2\gamma^2 (1 - \alpha) \|\nabla f({x}^k)\|_*}{M} \) 时，回溯终止条件成立。在回溯中，接受的 \( t \) 满足：  
+$$
+t \geq \dfrac{2\gamma^2 (1 - \alpha) \|\nabla f({x}^k)\|_*}{M}
+$$
+$\therefore$
+$
+f({x}^{k+1}) \leq f({x}^k) - \alpha t \|\nabla f({x}^k)\|_* \leq f({x}^k) - \frac{2\alpha\gamma^2(1 - \alpha)}{M} \|\nabla f({x}^k)\|_2
+$ \\
+$\because$ \( \|\nabla f({x}^k)\|_* \geq \tilde{\gamma} \|\nabla f({x}^k)\|_2 \) ,\(\|\nabla f({x}^k)\|_2^2 \geq 2m(f({x}^k) - p^*) \)\\
+$\therefore$ 可得
+$$
+f({x}^{k+1}) - p^* \leq f({x}^k) - p^* - \frac{2\alpha\gamma^2(1 - \alpha)}{M} \tilde{\gamma}^2 \cdot 2m(f({x}^k) - p^*) = \left(1 - \frac{2\alpha\gamma^2(1 - \alpha)\tilde{\gamma}^2 m}{M}\right)(f({x}^k) - p^*)
+$$  
+令 \( c = 1 - \dfrac{2\alpha\gamma^2(1 - \alpha)\tilde{\gamma}^2 m}{M} < 1 \)，则  
+$$
+f({x}^k) - p^* \leq c^k (f({x}^0) - p^*)
+$$  
+$\therefore$回溯直线搜索时，非规范化最速下降方法具备收敛性 
+\end{solution_cn}
+\vspace{0.25in}
+\begin{problem_cn}{3}
+min f(x)迭代求解最优性条件 $\nabla f(x^*) = 0$
+
+\textbf{假设:}
+
+$\checkmark$ 存在 $m, M$ 满足 $mI \leq \nabla^2 f(x) \leq MI$ $\left( \forall x \in S \right)$  
+
+$\checkmark$ 存在 $L$ 满足 $\big\|\nabla^2 f(y) - \nabla^2 f(x)\big\|_2 \leq L\|y - x\|_2$  
+
+\textbf{证明：} 回溯直线搜索时牛顿方法的收敛性。
+\end{problem_cn}
+\begin{solution_cn}
+\quad \\
+1.阻尼牛顿阶段\\
+当 $\|\nabla f({x}^k)\|_2 \geq \eta$ 时（其中 $\eta > 0$ 是一个常数），函数值以线性速率下降。\\  
+由泰勒展开可得
+$$
+f({x}^k + t {d}_k^n) \leq f({x}^k) + t \nabla f({x}^k)^\top {d}_k^n + \frac{1}{2} M t^2 \|{d}_k^n\|_2^2
+$$
+代入$\nabla f({x}^k)^\top {d}_k^n = -\lambda({x}^k)^2$ 和 $\|{d}_k^n\|_2^2 \leq \frac{1}{m} \lambda({x}^k)^2$（因 $\|{d}_k^n\|_2 \leq \frac{1}{\sqrt{m}} \lambda({x}^k)$），得
+$$
+f({x}^k + t {d}_k^n) \leq f({x}^k) - t \lambda({x}^k)^2 + \frac{M}{2m} t^2 \lambda({x}^k)^2
+$$  
+$\because$回溯终止条件要求
+$$
+f({x}^k + t {d}_k^n) \leq f({x}^k) - \alpha t \lambda({x}^k)^2
+$$  
+$\therefore$需满足
+$$
+-t \lambda({x}^k)^2 + \frac{M}{2m} t^2 \lambda({x}^k)^2 \leq -\alpha t \lambda({x}^k)^2
+$$  
+简化得  
+$$
+\frac{M}{2m} t \leq 1 - \alpha \implies t \leq \frac{2m(1 - \alpha)}{M}
+$$
+$\because$在回溯搜索中，$t$ 被选为满足 $t \geq \beta \cdot \frac{2m(1 - \alpha)}{M}$（$\beta \in (0,1)$ 为回溯因子）。\\
+$\therefore$
+$$
+f({x}^{k+1}) - f({x}^k) \leq -\alpha t \lambda({x}^k)^2 \leq -\alpha \beta \frac{2m(1 - \alpha)}{M} \lambda({x}^k)^2
+$$  
+$\because$ $\lambda({x}^k)^2 \geq \frac{1}{M} \|\nabla f({x}^k)\|_2^2$ 且 $\|\nabla f({x}^k)\|_2 \geq \eta$\\
+$\therefore$
+$$
+f({x}^{k+1}) - f({x}^k) \leq -\alpha \beta \frac{2m(1 - \alpha)}{M^2} \eta^2 = -\gamma
+$$
+其中 $\gamma = \alpha \beta \frac{2m(1 - \alpha)}{M^2} \eta^2 > 0$。\\ 
+$\because$ $f({x}) \geq p^*$（$p^*$ 为最优值）\\
+$\therefore$ 阻尼牛顿阶段的迭代次数最多为 $\dfrac{f({x}^0) - p^*}{\gamma}$。\\
+2.二次收敛阶段\\
+当 $\|\nabla f({x}^k)\|_2 < \eta$ 时（其中 $\eta$ 足够小），回溯搜索接受 $t=1$，且收敛速度为二次。\\
+由泰勒展开可得
+$$
+f({x}^k + {d}_k^n) \leq f({x}^k) + \nabla f({x}^k)^\top {d}_k^n + \frac{1}{2} ({d}_k^n)^\top \nabla^2 f({x}^k) {d}_k^n + \frac{L}{6} \|{d}_k^n\|_2^3
+$$  
+代入以下关系：  
+$$\nabla f({x}^k)^\top {d}_k^n = -\lambda({x}^k)^2
+$$  
+$$({d}_k^n)^\top \nabla^2 f({x}^k) {d}_k^n = \lambda({x}^k)^2
+$$  
+$$\|{d}_k^n\|_2^3 \leq \dfrac{1}{m^{3/2}} \lambda({x}^k)^3
+$$
+可得
+$$
+f({x}^k +{d}_k^n) \leq f({x}^k) - \lambda({x}^k)^2 + \frac{1}{2} \lambda({x}^k)^2 + \frac{L}{6m^{3/2}} \lambda({x}^k)^3 = f({x}^k) - \frac{1}{2} \lambda({x}^k)^2 + \frac{L}{6m^{3/2}} \lambda({x}^k)^3
+$$
+$\because$回溯终止条件要求
+$$
+f({x}^k + {d}_k^n) \leq f({x}^k) - \alpha \lambda({x}^k)^2 \quad (\alpha \in (0,1))
+$$  
+$\therefore$需满足不等式
+$$
+-\frac{1}{2} \lambda({x}^k)^2 + \frac{L}{6m^{3/2}} \lambda({x}^k)^3 \leq -\alpha \lambda({x}^k)^2
+\implies
+\frac{L}{6m^{3/2}} \lambda({x}^k) \leq \frac{1}{2} - \alpha \implies \lambda({x}^k) \leq \frac{6m^{3/2} \left( \frac{1}{2} - \alpha \right)}{L}
+$$  
+利用 $\lambda({x}^k) \leq \dfrac{1}{\sqrt{m}} \|\nabla f({x}^k)\|_2$，代入上式得
+$$
+\|\nabla f({x}^k)\|_2 \leq \frac{6m^2 \left( \frac{1}{2} - \alpha \right)}{L}
+$$  
+取 $\eta = \dfrac{6m^2 \left( \frac{1}{2} - \alpha \right)}{L}$，则当 $\|\nabla f({x}^k)\|_2 < \eta$ 时，$t=1$ 满足回溯终止条件。\\
+现在证明二次收敛\\
+考虑
+$$
+\nabla f({x}^{k+1}) = \nabla f\left({x}^k + {d}_k^n\right) = \int_0^1 \left[ \nabla^2 f({x}^k + s{d}_k^n) - \nabla^2 f({x}^k) \right] {d}_k^n \, ds
+$$  
+$\because$ $\|\nabla^2 f({y}) - \nabla^2 f({x})\| \leq L\|{y}-{x}\|$\\
+$\therefore$ $\left\|\left[\nabla^2 f({x}^k + s{d}_k^n) - \nabla^2 f({x}^k)\right] {d}_k^n\right\|_2 \leq L s \|{d}_k^n\|_2^2$ \\
+$\therefore$  
+$$
+\|\nabla f({x}^{k+1})\|_2 \leq \int_0^1 L s \|{d}_k^n\|_2^2 \, ds = \frac{L}{2} \|{d}_k^n\|_2^2
+$$  
+$\because$ $\|{d}_k^n\|_2^2 \leq \frac{1}{m} \|\nabla f({x}^k)\|_2$\\
+$\therefore$ 代入得
+$$ 
+\|\nabla f({x}^{k+1})\|_2 \leq \frac{L}{2m^2} \|\nabla f({x}^k)\|_2^2
+$$  
+$\therefore$ 一旦 $\|\nabla f({x}^k)\|_2 < \eta$，序列 $\{\|\nabla f({x}^k)\|_2\}$ 以二次速度收敛。\\
+$\because$$f$ 是强凸函数，满足 $f({x}) - p^* \leq \frac{1}{2m} \|\nabla f({x})\|_2^2$\\
+$\therefore$ $f({x}^k) - p^*$ 也快速收敛。\\
+$\therefore$ 达到 $f({x}^k) - p^* < \varepsilon$ 所需的迭代次数为 $\log_2(\log_2(1/\varepsilon))$ 数量级。\\  
+综上，牛顿方法在回溯直线搜索下全局收敛，且最终收敛速度为二次。  
+\end{solution_cn}
+
+% -----------------------------------------------
+% 以下内容无需编辑
+% -----------------------------------------------
+
+\end{document}
