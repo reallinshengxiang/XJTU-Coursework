@@ -7,7 +7,7 @@
 
 </div>
 
-This repository archives my coursework, including labs, homework, and projects, from key computer-related and fundamental courses during my undergraduate studies at Xi'an Jiaotong University (XJTU).  
+This repository archives my coursework, including labs, homework, and projects, from key computer-related and fundamental courses during my undergraduate studies at Xi'an Jiaotong University (XJTU). It should be noted that the courses for the Fall 2024 semester are all credits transferred from the [UC Berkeley](https://github.com/Shengxiang-Lin/UCB-Coursework) to XJTU.
 
 ## 📚 Courses List 
 |Seme.|CourseID|CourseName|
@@ -23,6 +23,10 @@ This repository archives my coursework, including labs, homework, and projects, 
 |23fall 24spring|ETRA300152|[Integrated Engineering Training](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Integrated-Engineering-Training)|
 |24spring|COMP551005|[Assembly Language](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Assembly-Language)|
 |24spring|COMP561405|[Game Design and Development](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Game-Design-and-Development)|
+|24fall|COMP461505|[Computer Architecture](https://github.com/Shengxiang-Lin/COMPSCI-61C)|
+|24fall|COMP461205|[Operating Systems](https://github.com/Shengxiang-Lin/COMPSCI-162)|
+|24fall|COMP400527|[Computer Networks](https://github.com/Shengxiang-Lin/COMPSCI-168)|
+|24fall|COMP400527|[Introduction to Artificial Intelligence](https://github.com/Shengxiang-Lin/COMPSCI-188)|
 |25spring|COMP460905|[Cognitive Computing and Machine Learning](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Cognitive-Computing-and-Machine-Learning)|    
 |25spring|COMP461505|[Computer Architecture](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Computer-Architecture)|    
 |25spring|COMP461405|[Database](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Database)|    
