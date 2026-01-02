@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+transformer_checkpoints/
+lstm_checkpoints/
+*.log
+
+.env
+venv/
+
+.idea/
+.vscode/
+data/
+tokenizer/
