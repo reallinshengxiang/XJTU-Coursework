@@ -23,7 +23,7 @@ This repository archives my coursework, including labs, homework, and projects, 
 |23fall 24spring|ETRA300152|[Integrated Engineering Training](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Integrated-Engineering-Training)|
 |24spring|COMP551005|[Assembly Language](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Assembly-Language)|
 |24spring|COMP561405|[Game Design and Development](https://github.com/reallinshengxiang/XJTU-Coursework/tree/Game-Design-and-Development)|
-|24fall|COMP461505|[Computer Architecture](https://github.com/Shengxiang-Lin/COMPSCI-61C)|
+|24fall|COMP461505|[Computer Organization](https://github.com/Shengxiang-Lin/COMPSCI-61C)|
 |24fall|COMP461205|[Operating Systems](https://github.com/Shengxiang-Lin/COMPSCI-162)|
 |24fall|COMP400527|[Computer Networks](https://github.com/Shengxiang-Lin/COMPSCI-168)|
 |24fall|COMP400527|[Introduction to Artificial Intelligence](https://github.com/Shengxiang-Lin/COMPSCI-188)|
