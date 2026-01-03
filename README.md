@@ -1,14 +1,14 @@
 # LLM-Based Synthetic Tabular Data Generation
 
-## 1. Survey & Classic Methods
+## Survey & Classic Methods
 
-### 1.1 Tabular Data Learning Survey
+### Tabular Data Learning Survey
 
 |Method/Type|Paper Title|Published At|Link|
 |---|---|---|---|
 |*DNN-Tabular Survey*|**Deep Neural Networks and Tabular Data: A Survey**|IEEE TNNLS 2022|[![Paper](https://img.shields.io/badge/Paper-blue)](https://ieeexplore.ieee.org/document/9437761) [![Github](https://img.shields.io/github/stars/kathrinse/TabSurvey?style=social&label=Github)](https://github.com/kathrinse/TabSurvey)|
 |*LLM-Tabular Survey*|**Large Language Models (LLMs) on Tabular Data: Prediction, Generation, and Understanding—A Survey**|arXiv 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2402.17944) [![Github](https://img.shields.io/github/stars/tanfiona/LLM-on-Tabular-Data-Prediction-Table-Understanding-Data-Generation?style=social&label=Github)](https://github.com/tanfiona/LLM-on-Tabular-Data-Prediction-Table-Understanding-Data-Generation)|
-### 1.2 Traditional Synthetic Data Methods
+### Traditional Synthetic Data Methods
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
@@ -20,9 +20,9 @@
 |*DDPM*|**Denoising Diffusion Probabilistic Models**|NeurIPS 2020|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2006.11239) [![Github](https://img.shields.io/github/stars/hojonathanho/diffusion?style=social&label=Github)](https://github.com/hojonathanho/diffusion)|
 |*GPT-3*|**Language Models are Few-Shot Learners**|NeurIPS 2020|[![Paper](https://img.shields.io/badge/Paper-blue)](https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html)|
 |*TabDDPM*|**TabDDPM: Modelling Tabular Data with Diffusion Models**|ICML 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2209.15421) [![Github](https://img.shields.io/github/stars/yandex-research/tab-ddpm?style=social&label=Github)](https://github.com/yandex-research/tab-ddpm)|
-## 2. LLM-Based Tabular Synthesis Methods
+## LLM-Based Tabular Synthesis Methods
 
-### 2.1 Core Generation Frameworks
+### Core Generation Frameworks
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
@@ -31,7 +31,7 @@
 |*TabMT*|**TabMT: Generating tabular data with masked transformers**|NeurIPS 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2312.06089) [![Github](https://img.shields.io/github/stars/Cher-er/TabMT?style=social&label=Github)](https://github.com/Cher-er/TabMT)|
 |*TAPTAP*|**Generative Table Pre-training Empowers Models for Tabular Prediction**|EMNLP 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2305.09696) [![Github](https://img.shields.io/github/stars/ZhangTP1996/TapTap?style=social&label=Github)](https://github.com/ZhangTP1996/TapTap)|
 |*REaLTabFormer*|**REaLTabFormer: Generating Realistic Relational and Tabular Data using Transformers**|arXiv 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2302.02041) [![Github](https://img.shields.io/github/stars/worldbank/REaLTabFormer?style=social&label=Github)](https://github.com/worldbank/REaLTabFormer)|
-### 2.2 Advanced Prompt-Based Methods
+### Advanced Prompt-Based Methods
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
@@ -40,19 +40,19 @@
 |*LITO*|**Language-Interfaced Tabular Oversampling via Progressive Imputation and Self-Authentication**|ICLR 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2312.11153)|
 |*OCTree*|**Optimized Feature Generation for Tabular Data via LLMs with Decision Tree Reasoning**|NeurIPS 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2406.08527) [![Github](https://img.shields.io/github/stars/jaehyun513/OCTree?style=social&label=Github)](https://github.com/jaehyun513/OCTree)|
 |*AIGT*|**AIGT: AI Generative Table Based on Prompt**|arXiv 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2412.18111)|
-### 2.3 Specialized Fine-Tuning Approaches
+### Specialized Fine-Tuning Approaches
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
 |*P-TA*|**P-TA: Using Proximal Policy Optimization to Enhance Tabular Data Augmentation via Large Language Models**|ACL Findings 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://aclanthology.org/2024.findings-acl.248/)|
 |*DP-LLMTGen*|**Differentially Private Tabular Data Synthesis using Large Language Models**|arXiv 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2406.01457)|
 |*Pred-LLM*|**Generating Realistic Tabular Data with Large Language Models**|arXiv 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2410.21717) [![Github](https://img.shields.io/github/stars/nphdang/Pred-LLM?style=social&label=Github)](https://github.com/nphdang/Pred-LLM)|
-### 2.4 Hybrid Architectures
+### Hybrid Architectures
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
 |*LLM-TabFlow*|**LLM-TabFlow: A Hybrid LLM-Diffusion Approach for High-Fidelity Tabular Data Synthesis**|NeurIPS 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2503.02161)|
-## 3. Privacy & Security Methods
+## Privacy & Security Methods
 
 |Method/Topic|Paper Title|Published At|Link|
 |---|---|---|---|
@@ -63,44 +63,44 @@
 |*PATE-GAN*|**PATE-GAN: Generating Synthetic Data with Differential Privacy Guarantees**|ICLR 2018|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/1801.08947) [![Github](https://img.shields.io/github/stars/BorealisAI/private-data-generation?style=social&label=Github)](https://github.com/BorealisAI/private-data-generation)|
 |*Memorization Analysis*|**An Empirical Analysis of Memorization in Fine-tuned Autoregressive Language Models**|EMNLP 2022|[![Paper](https://img.shields.io/badge/Paper-blue)](https://aclanthology.org/2022.emnlp-main.607/)|
 |*Privacy-Risk & Overfitting*|**Privacy Risk in Machine Learning: Analyzing the Connection to Overfitting**|IEEE CSF 2018|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/1709.01604) [![Github](https://img.shields.io/github/stars/sam-yeom/ml-privacy-csf18?style=social&label=Github)](https://github.com/sam-yeom/ml-privacy-csf18)|
-## 4. Domain-Specific Applications (2023-2025)
+## Domain-Specific Applications (2023-2025)
 
-### 4.1 Healthcare
+### Healthcare
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
 |*SynLLM*|**SynLLM: A Comparative Analysis of Large Language Models for Medical Tabular Synthetic Data Generation via Prompt Engineering**|arXiv 2025|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2508.08529)|
-### 4.2 Finance
+### Finance
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
 |*FinSyn*|**Realistic Synthetic Financial Transactions for Anti-Money Laundering Models**|Workshop on Data Science for Macro-Modeling 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2306.09739) [![Github](https://img.shields.io/github/stars/IBM/Multi-GNN?style=social&label=Github)](https://github.com/IBM/Multi-GNN)|
-### 4.3 Recommendation Systems
+### Recommendation Systems
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
 | *SampleLLM* | **SampleLLM: Optimizing Tabular Data Synthesis in Recommendations** | WWW 2025 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2501.16125) [![Github](https://img.shields.io/github/stars/Gaojingtong/SampleLLM?style=social&label=Github)](https://github.com/Gaojingtong/SampleLLM)|
 |*DiffuRec*|**DiffuRec: A Diffusion Model for Sequential Recommendation**|ACM TOIS 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2304.00686) [![Github](https://img.shields.io/github/stars/WHUIR/DiffuRec?style=social&label=Github)](https://github.com/WHUIR/DiffuRec)|
 |*PrivRec*|**Privacy-Preserving Sequential Recommendation with Collaborative Confusion**|ACM TOIS 2025|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2401.04423) [![Github](https://img.shields.io/github/stars/weiwang0927/CLOUD?style=social&label=Github)](https://github.com/weiwang0927/CLOUD)|
-## 5. Evaluation & Benchmarking
+## Evaluation & Benchmarking
 
 |Method/Benchmark|Paper Title|Published At|Link|
 |---|---|---|---|
 |*TabSynthEval*|**Towards Standardized Evaluation of Synthetic Tabular Data: Metrics, Benchmarks, and Best Practices**|ICDM 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2405.11117) [![Github](https://img.shields.io/github/stars/Vicomtech/STDG-evaluation-metrics?style=social&label=Github)](https://github.com/Vicomtech/STDG-evaluation-metrics)|
-## 6. Supplementary Topics
+## Supplementary Topics
 
-### 6.1 Imbalanced Data Learning
+### Imbalanced Data Learning
 
 |Method/Topic|Paper Title|Published At|Link|
 |---|---|---|---|
 |*Imbalanced Learning Survey*|**Learning from Imbalanced Data**|IEEE TKDE 2009|[![Paper](https://img.shields.io/badge/Paper-blue)](https://ieeexplore.ieee.org/document/4685528)|
 |*Data Augmentation Survey*|**A Survey on Image Data Augmentation for Deep Learning**|Journal of Big Data 2019|[![Paper](https://img.shields.io/badge/Paper-blue)](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0197-0)|
-### 6.2 Missing Data Analysis
+### Missing Data Analysis
 
 |Topic|Book/Paper Title|Published At|Link|
 |---|---|---|---|
 |*Missing Data Analysis*|**Statistical Analysis with Missing Data** (Vol. 793)|John Wiley & Sons 2019|[![Book](https://img.shields.io/badge/Book-orange)](https://onlinelibrary.wiley.com/book/10.1002/9781119482260)|
-### 6.3 LLM Optimization
+### LLM Optimization
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
