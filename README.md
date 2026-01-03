@@ -96,7 +96,3 @@
 - **[Deep Neural Networks and Tabular Data: A Survey](https://ieeexplore.ieee.org/document/10035751)**  
   V. Borisov et al. (2022). *IEEE TNNLS*.
 
----
-
-共收录 **40+** 篇核心相关论文，所有链接均已验证有效（截至 2026 年 1 月）。  
-可直接用于论文配套网站、GitHub 项目 README 或个人文献整理。
