@@ -1,4 +1,3 @@
-
 # LLM-Based Synthetic Tabular Data Generation
 
 ## 1. Classic & Traditional Methods
@@ -20,17 +19,17 @@
 
 | Method | Paper Title | Published At | Link |
 | :---: | :--- | :--- | :--- |
-| *GReaT* | **GReaT: A Generative Model for Realistic Tabular Data** | *arXiv* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2308.01785) [![Github](https://img.shields.io/github/stars/kathrinse/be_great.svg?style=social&label=Github)](https://github.com/kathrinse/be_great) |
-| *TabuLa* | **TabuLa: Harnessing Language Models for Tabular Data Synthesis** | *arXiv* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2310.12746) [![Github](https://img.shields.io/github/stars/zhao-zilong/Tabula.svg?style=social&label=Github)](https://github.com/zhao-zilong/Tabula) |
+| *GReaT* | **GReaT: Generating Realistic Tabular Data with Large Language Models** | *arXiv* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2308.01785) [![Github](https://img.shields.io/github/stars/kathrinse/GReaT?style=social&label=Github)](https://github.com/kathrinse/GReaT) |
+| *TabuLa* | **TabuLa: Harnessing Language Models for Tabular Data Synthesis** | *arXiv* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2310.12746) |
 | *TabMT* | **TabMT: Masked Table Pre-training for Versatile Tabular Tasks** | *NeurIPS* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2311.02447) |
 | *TAPTAP* | **TAPTAP: Two-stage Table-aware Pre-training and Prompting** | *EMNLP* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://aclanthology.org/2023.emnlp-main.123/) |
-| *REaLTabFormer* | **REaLTabFormer: Generating Realistic Relational and Tabular Data** | *arXiv* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2302.02041) [![Github](https://img.shields.io/github/stars/avsolatorio/REaLTabFormer.svg?style=social&label=Github)](https://github.com/avsolatorio/REaLTabFormer) |
+| *REaLTabFormer* | **REaLTabFormer: Generating Realistic Relational and Tabular Data using Transformers** | *arXiv* 2023 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2302.02041) [![Github](https://img.shields.io/github/stars/avsolatorio/REaLTabFormer?style=social&label=Github)](https://github.com/avsolatorio/REaLTabFormer) |
 
 ### 2.2 Advanced Prompt-Based Methods
 
 | Method | Paper Title | Published At | Link |
 | :---: | :--- | :--- | :--- |
-| *CLLM* | **Curated LLM: Synergy of LLMs and Data Curation for Tabular Augmentation** | *ICML* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2402.01382) |
+| *CLLM* | **Curated LLM: Synergy of LLMs and Data Curation for Tabular Augmentation in Low-Data Regimes** | *ICML* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2402.01382) |
 | *EPIC* | **EPIC: Effective Prompting for Imbalanced-Class Data Synthesis** | *NeurIPS* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2411.12466) |
 | *LITO* | **LITO: Language-Interfaced Tabular Oversampling via Progressive Imputation** | *ICLR* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2312.11153) |
 | *OCTree* | **OCTree: Optimized Feature Generation via LLM with Decision Tree Reasoning** | *NeurIPS* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2411.17081) |
@@ -41,7 +40,7 @@
 | Method | Paper Title | Published At | Link |
 | :---: | :--- | :--- | :--- |
 | *P-TA* | **P-TA: Using PPO to Enhance Tabular Data Augmentation via LLMs** | *ACL Findings* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://aclanthology.org/2024.findings-acl.248/) |
-| *DP-LLMTGen* | **Differentially Private Tabular Data Synthesis Using LLMs** | *arXiv* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2406.01457) |
+| *DP-LLMTGen* | **Differentially Private Tabular Data Synthesis Using Large Language Models** | *arXiv* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2406.01457) |
 | *Pred-LLM* | **Pred-LLM: Generating Realistic Tabular Data with Large Language Models** | *arXiv* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2410.21717) |
 
 ### 2.4 Hybrid Architectures
@@ -67,7 +66,7 @@
 
 | Method | Paper Title | Published At | Link |
 | :---: | :--- | :--- | :--- |
-| *SynLLM* | **SynLLM: Comparative Analysis of LLMs for Medical Tabular Synthetic Data Generation** | *arXiv* 2025 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2508.08529) |
+| *SynLLM* | **SynLLM: A Comparative Analysis of Large Language Models for Medical Tabular Synthetic Data Generation via Prompt Engineering** | *arXiv* 2025 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2508.08529) |
 | *DP-MedTab* | **DP-MedTab: Differentially Private Medical Table Generation** | *ACM CHIL* 2025 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2410.11234) |
 
 ### 4.2 Finance
@@ -90,15 +89,8 @@
 | :---: | :--- | :--- | :--- |
 | *SynTabBench* | **SynTabBench: A Standardized Benchmark for Tabular Data Synthesis** | *NeurIPS* 2024 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2412.15678) |
 
-## 6. Tools & Frameworks
-
-| Method | Paper Title | Published At | Link |
-| :---: | :--- | :--- | :--- |
-| *TabGenKit* | **TabGenKit: Open-source Toolkit for Tabular Data Synthesis** | *GitHub* 2024 | [![Github](https://img.shields.io/github/stars/TabGenKit/TabGenKit.svg?style=social&label=Github)](https://github.com/TabGenKit/TabGenKit) |
-
 ---
 ## Citation
-
 
 ```bibtex
 @article{lin2025generating,
@@ -107,4 +99,3 @@
   year={2026},
   note={Preprint under review}
 }
-```
