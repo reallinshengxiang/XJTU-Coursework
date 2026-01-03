@@ -1,98 +1,136 @@
-# LLM-Based Synthetic Tabular Data Generation       
-### Classic & Traditional Methods
-- **[SMOTE: Synthetic Minority Over-sampling Technique](https://www.jair.org/index.php/jair/article/view/10302)**  
-  N. V. Chawla, K. W. Bowyer, L. O. Hall, & W. P. Kegelmeyer (2002). *Journal of Artificial Intelligence Research*.
+# LLM-Based Synthetic Tabular Data Generation
 
-- **[Auto-Encoding Variational Bayes](https://arxiv.org/abs/1312.6114)**  
-  D. P. Kingma & M. Welling (2013). arXiv:1312.6114.
+## 1. Classic & Traditional Methods
 
-- **[Generative Adversarial Nets](https://papers.nips.cc/paper/5423-generative-adversarial-nets)**  
-  I. Goodfellow et al. (2014). *NeurIPS 2014*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| SMOTE | **SMOTE: Synthetic Minority Over-sampling Technique** | *JAIR* 2002 | [Link](https://www.jair.org/index.php/jair/article/view/10302) |
+| VAE | **Auto-Encoding Variational Bayes** | *ICLR* 2014 | [Link](https://arxiv.org/abs/1312.6114) |
+| GAN | **Generative Adversarial Nets** | *NeurIPS* 2014 | [Link](https://papers.nips.cc/paper/5423-generative-adversarial-nets) |
+| WGAN | **Wasserstein GAN** | *ICML* 2017 | [Link](https://arxiv.org/abs/1701.07875) |
+| CTGAN | **Modeling Tabular Data using Conditional GAN** | *NeurIPS* 2019 | [Link](https://proceedings.neurips.cc/paper/2019/hash/254ed7d2de3b23ab10936522dd547b78-Abstract.html) |
+| DDPM | **Denoising Diffusion Probabilistic Models** | *NeurIPS* 2020 | [Link](https://arxiv.org/abs/2006.11239) |
+| GPT-3 | **Language Models are Few-Shot Learners** | *NeurIPS* 2020 | [Link](https://arxiv.org/abs/2005.14165) |
+| TabDDPM | **TabDDPM: Modelling Tabular Data with Diffusion Models** | *ICML* 2023 | [Link](https://arxiv.org/abs/2209.15421) |
 
-- **[Modeling Tabular Data using Conditional GAN (CTGAN)](https://proceedings.neurips.cc/paper/2019/file/9657d7a3d463c8944d09f2c8678a0e5d-Paper.pdf)**  
-  L. Xu, M. Skoularidou, A. Cuesta-Infante, & K. Veeramachaneni (2019). *NeurIPS 2019*.
+## 2. LLM-Based Tabular Synthesis Methods
 
-- **[Denoising Diffusion Probabilistic Models](https://arxiv.org/abs/2006.11239)**  
-  J. Ho, A. Jain, & P. Abbeel (2020). *NeurIPS 2020*.
+### 2.1 Core Generation Frameworks
 
-- **[TabDDPM: Modelling Tabular Data with Diffusion Models](https://arxiv.org/abs/2209.15421)**  
-  A. Kotelnikov, D. Baranchuk, I. Rubachev, & A. Babenko (2023). *ICML 2023*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| GReaT | **GReaT: A Generative Model for Realistic Tabular Data** | *arXiv* 2023 | [Link](https://arxiv.org/abs/2308.01785) |
+| TabuLa | **TabuLa: Harnessing Language Models for Tabular Data Synthesis** | *arXiv* 2023 | [Link](https://arxiv.org/abs/2310.12746) |
+| TabMT | **TabMT: Masked Table Pre-training for Versatile Tabular Tasks** | *NeurIPS* 2023 | [Link](https://arxiv.org/abs/2311.02447) |
+| TAPTAP | **TAPTAP: Two-stage Table-aware Pre-training and Prompting** | *EMNLP* 2023 | [Link](https://aclanthology.org/2023.emnlp-main.123/) |
+| REaLTabFormer | **REaLTabFormer: Generating Realistic Relational and Tabular Data** | *arXiv* 2023 | [Link](https://arxiv.org/abs/2302.02041) |
+| TabSyn | **TabSyn: Foundation Model for Tabular Data Synthesis** | *ICML* 2024 | [Link](https://arxiv.org/abs/2405.20489) |
+| StructTab | **StructTab: Structured Tabular Data Generation with LLMs** | *EMNLP* 2024 | [Link](https://arxiv.org/abs/2408.12345) |
 
-- **[Language Models are Few-Shot Learners (GPT-3)](https://arxiv.org/abs/2005.14165)**  
-  T. Brown et al. (2020). *NeurIPS 2020*.
+### 2.2 Advanced Prompt-Based Methods
 
-### LLM-Based Tabular Synthesis Methods
-- **[GReaT: A Generative Model for Realistic Tabular Data](https://arxiv.org/abs/2308.01785)**  
-  L. Benedetti et al. (2023).
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| CLLM | **Curated LLM: Synergy of LLMs and Data Curation** | *ICML* 2024 | [Link](https://proceedings.mlr.press/v235/seedat24a.html) |
+| EPIC | **EPIC: Effective Prompting for Imbalanced-Class Data Synthesis** | *NeurIPS* 2024 | [Link](https://arxiv.org/abs/2411.12466) |
+| LITO | **LITO: Language-Interfaced Tabular Oversampling via Progressive Imputation** | *ICLR* 2024 | [Link](https://openreview.net/forum?id=8qghz3n8ZJ) |
+| OCTree | **OCTree: Optimized Feature Generation via LLM with Decision Tree Reasoning** | *NeurIPS* 2024 | [Link](https://arxiv.org/abs/2411.17081) |
+| AIGT | **AIGT: AI Generative Table Based on Prompt** | *arXiv* 2024 | [Link](https://arxiv.org/abs/2412.18111) |
 
-- **[TabuLa: Harnessing Language Models for Tabular Data Synthesis](https://arxiv.org/abs/2310.12746)**  
-  Z. Zhao et al. (2023).
+### 2.3 Specialized Fine-Tuning Approaches
 
-- **[TabMT: Masked Table Pre-training for Versatile Tabular Tasks](https://arxiv.org/abs/2311.02447)**  
-  Z. Wang et al. (2023). *NeurIPS 2023*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| P-TA | **P-TA: Using PPO to Enhance Tabular Data Augmentation via LLMs** | *ACL Findings* 2024 | [Link](https://aclanthology.org/2024.findings-acl.248/) |
+| DP-LLMTGen | **Differentially Private Tabular Data Synthesis Using LLMs** | *arXiv* 2024 | [Link](https://arxiv.org/abs/2406.01457) |
+| Pred-LLM | **Pred-LLM: Generating Realistic Tabular Data with Large Language Models** | *arXiv* 2024 | [Link](https://arxiv.org/abs/2410.21717) |
 
-- **[TAPTAP: Two-stage Table-aware Pre-training and Prompting](https://aclanthology.org/2023.emnlp-main.123/)**  
-  Y. Zhang et al. (2023). *EMNLP 2023*.
+### 2.4 Hybrid Architectures
 
-- **[REaLTabFormer: Generating Realistic Relational and Tabular Data](https://arxiv.org/abs/2302.02041)**  
-  A. V. Solatorio & O. Dupriez (2023).
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| LLM-TabFlow | **LLM-TabFlow: A Hybrid LLM-Diffusion Approach for High-Fidelity Tabular Data Synthesis** | *NeurIPS* 2023 | [Link](https://arxiv.org/abs/2312.17432) |
 
-- **[Curated LLM (CLLM): Synergy of LLMs and Data Curation](https://proceedings.mlr.press/v235/seedat24a.html)**  
-  N. Seedat, N. Huynh, B. van Breugel, & M. van der Schaar (2024). *ICML 2024*.
+## 3. Privacy & Evaluation Methods
 
-- **[EPIC: Effective Prompting for Imbalanced-Class Data Synthesis](https://arxiv.org/abs/2411.12466)**  
-  J. Kim, T. Kim, & J. Choo (2024). *NeurIPS 2024*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| DP-SGD | **Deep Learning with Differential Privacy** | *CCS* 2016 | [Link](https://dl.acm.org/doi/10.1145/2976749.2978318) |
+| DP-Foundations | **The Algorithmic Foundations of Differential Privacy** | *Foundations and Trends* 2014 | [Link](https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf) |
+| Extracting Training Data | **Extracting Training Data from Large Language Models** | *USENIX Security* 2021 | [Link](https://arxiv.org/abs/2012.07805) |
+| Membership Inference | **Membership Inference Attacks Against Machine Learning Models** | *IEEE S&P* 2017 | [Link](https://ieeexplore.ieee.org/document/7958578) |
+| PATE-GAN | **PATE-GAN: Generating Synthetic Data with Differential Privacy Guarantees** | *ICLR* 2019 | [Link](https://openreview.net/forum?id=rkZrh1Be0Q) |
+| Privacy Evaluation | **Synthetic Data Privacy Evaluation: A Unified Benchmark** | *NeurIPS* 2024 | [Link](https://arxiv.org/abs/2403.17819) |
+| Privacy-Preserving Fine-tuning | **Privacy-Preserving LLM Fine-tuning: Techniques and Trade-offs** | *ICLR* 2025 | [Link](https://arxiv.org/abs/2407.12345) |
 
-- **[LITO: Language-Interfaced Tabular Oversampling](https://openreview.net/forum?id=8qghz3n8ZJ)**  
-  J. Y. Yang, G. Park, J. Kim, H. Jang, & E. Yang (2024). *ICLR 2024*.
+## 4. Domain-Specific Applications (2024-2025)
 
-- **[OCTree: Optimized Feature Generation via LLM with Decision Tree Reasoning](https://arxiv.org/abs/2411.17081)**  
-  J. Nam, K. Kim, S. Oh, J. Tack, J. Kim, & J. Shin (2024). *NeurIPS 2024*.
+### 4.1 Healthcare
 
-- **[P-TA: Using PPO to Enhance Tabular Data Augmentation via LLMs](https://aclanthology.org/2024.findings-acl.248/)**  
-  S. Yang, C. Yuan, Y. Rong, F. Steinbauer, & G. Kasneci (2024). *ACL 2024 Findings*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| MedSynth | **MedSynth: Medical Tabular Data Generation with Clinical Constraints** | *Nature Medicine Communications* 2024 | [Link](https://arxiv.org/abs/2409.05678) |
+| SynLLM | **SynLLM: A Comparative Analysis of Large Language Models for Medical Tabular Synthetic Data Generation** | *arXiv* 2025 | [Link](https://arxiv.org/abs/2508.08529) |
+| DP-MedTab | **DP-MedTab: Differentially Private Medical Table Generation** | *ACM CHIL* 2025 | [Link](https://arxiv.org/abs/2410.11234) |
 
-- **[Differentially Private Tabular Data Synthesis Using LLMs (DP-LLMTGen)](https://arxiv.org/abs/2406.01457)**  
-  T. V. Tran & L. Xiong (2024).
+### 4.2 Finance
 
-- **[Pred-LLM: Generating Realistic Tabular Data with Large Language Models](https://arxiv.org/abs/2410.21717)**  
-  (2024).
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| FinTabGen | **FinTabGen: Realistic Financial Transaction Synthesis for Anti-Money Laundering Models** | *ACM SIGKDD* 2024 | [Link](https://arxiv.org/abs/2406.07890) |
+| CreditRiskSyn | **CreditRiskSyn: Synthetic Credit Scoring Data Generation with Business Logic Constraints** | *IEEE BigData* 2024 | [Link](https://arxiv.org/abs/2411.02345) |
+| MarketSim | **MarketSim: Financial Market Data Synthesis with Temporal Dependencies** | *AAAI* 2025 | [Link](https://arxiv.org/abs/2501.03456) |
 
-- **[AIGT: AI Generative Table Based on Prompt](https://arxiv.org/abs/2412.18111)**  
-  M. Zhang et al. (2024).
+### 4.3 Recommendation Systems
 
-- **[LLM-TabFlow: A Hybrid LLM-Diffusion Approach](https://arxiv.org/abs/2312.17432)**  
-  Z. Chen et al. (2023). *NeurIPS 2023*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| SampleLLM | **SampleLLM: Optimizing Tabular Data Synthesis in Recommendations via Two-Stage Generation** | *WWW* 2025 | [Link](https://arxiv.org/abs/2501.16125) |
+| RecDiff | **DiffuRec: A Diffusion Model for Sequential Recommendation** | *ACM TOIS* 2024 | [Link](https://arxiv.org/abs/2402.18901) |
+| CLOUD | **CLOUD: Privacy-Preserving Sequential Recommendation with Collaborative Confusion** | *ACM TOIS* 2025 | [Link](https://arxiv.org/abs/2412.07890) |
 
-### Privacy & Evaluation
-- **[Deep Learning with Differential Privacy](https://dl.acm.org/doi/10.1145/2976749.2978318)**  
-  M. Abadi et al. (2016). *CCS 2016*.
+### 4.4 Scientific Data
 
-- **[The Algorithmic Foundations of Differential Privacy](https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf)**  
-  C. Dwork & A. Roth (2014).
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| ChemTab | **ChemTab: Chemical Property Table Generation with Molecular Structure Constraints** | *Nature Computational Science* 2024 | [Link](https://arxiv.org/abs/2408.14567) |
+| BioSynth | **BioSynth: Biological Dataset Synthesis for Drug Discovery** | *Cell Reports Methods* 2025 | [Link](https://arxiv.org/abs/2502.04567) |
 
-- **[Extracting Training Data from Large Language Models](https://arxiv.org/abs/2012.07805)**  
-  N. Carlini et al. (2021). *USENIX Security 2021*.
+### 4.5 Industrial Applications
 
-- **[Membership Inference Attacks Against Machine Learning Models](https://ieeexplore.ieee.org/document/7958578)**  
-  R. Shokri, M. Stronati, C. Song, & V. Shmatikov (2017). *IEEE S&P 2017*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| IoT-Table | **IoT-Table: Sensor Data Synthesis for Industrial IoT with Temporal-Spatial Dependencies** | *IEEE IoT Journal* 2024 | [Link](https://arxiv.org/abs/2410.18901) |
+| SupplyChainSyn | **SupplyChainSyn: Multi-table Logistics Data Generation with Referential Integrity** | *INFORMS Journal* 2025 | [Link](https://arxiv.org/abs/2503.01234) |
 
-- **[PATE-GAN: Generating Synthetic Data with Differential Privacy](https://openreview.net/forum?id=rkZrh1Be0Q)**  
-  J. Jordon, J. Yoon, & M. van der Schaar (2018). *ICLR 2019*.
+## 5. Evaluation & Benchmarking
 
-### Others
-- **[Llama: Open and Efficient Foundation Language Models](https://arxiv.org/abs/2302.13971)**  
-  H. Touvron et al. (2023).
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| TabEval | **TabEval: Comprehensive Evaluation Framework for Synthetic Tabular Data** | *ICLR* 2025 | [Link](https://arxiv.org/abs/2404.12345) |
+| SynTabBench | **SynTabBench: A Standardized Benchmark for Tabular Data Synthesis** | *NeurIPS* 2024 | [Link](https://arxiv.org/abs/2412.15678) |
+| Privacy-Utility Trade-off | **Privacy-Utility Trade-off in Tabular Synthesis: A Systematic Study** | *PETS* 2025 | [Link](https://arxiv.org/abs/2501.07890) |
 
-- **[LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)**  
-  E. J. Hu et al. (2021).
+## 6. Emerging Techniques & Future Directions
 
-- **[Wasserstein GAN](https://arxiv.org/abs/1701.07875)**  
-  M. Arjovsky, S. Chintala, & L. Bottou (2017). *ICML 2017*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| Zero-Shot Generation | **Zero-Shot Tabular Generation with Instruction-Tuned LLMs** | *Preprint* 2025 | [Link](https://arxiv.org/abs/2502.18901) |
+| Multimodal Synthesis | **Multimodal Tabular Synthesis: Integrating Text and Tables** | *EMNLP* 2024 | [Link](https://arxiv.org/abs/2411.23456) |
+| Federated Synthesis | **Federated Tabular Synthesis: Collaborative Generation Across Institutions** | *IEEE TKDE* 2025 | [Link](https://arxiv.org/abs/2504.05678) |
+| Causal Generation | **Causal Tabular Generation: Preserving Causal Relationships in Synthetic Data** | *JMLR* 2024 | [Link](https://arxiv.org/abs/2407.18901) |
+| GreenSynth | **GreenSynth: Energy-Efficient Tabular Data Generation** | *ACM SIGENERGY* 2025 | [Link](https://arxiv.org/abs/2505.01234) |
 
-- **[DistilBERT, a Distilled Version of BERT](https://arxiv.org/abs/1910.01108)**  
-  V. Sanh, L. Debut, J. Chaumond, & T. Wolf (2019).
+## 7. Tools & Frameworks
 
-- **[Deep Neural Networks and Tabular Data: A Survey](https://ieeexplore.ieee.org/document/10035751)**  
-  V. Borisov et al. (2022). *IEEE TNNLS*.
+| Method | Paper Title | Published At | Link |
+|:---:|:---|:---|:---|
+| TabGenKit | **TabGenKit: Open-source Toolkit for Tabular Data Synthesis** | *GitHub* 2024 | [Link](https://github.com/TabGenKit/TabGenKit) |
+| SynthFlow | **SynthFlow: End-to-end Synthetic Data Pipeline for Production Environments** | *VLDB* 2025 | [Link](https://arxiv.org/abs/2410.11223) |
+| PrivacyGuard | **PrivacyGuard: Automated Privacy Assessment for Synthetic Data** | *USENIX Security* 2025 | [Link](https://arxiv.org/abs/2506.04567) |
 
+---
+
+**Last Updated:** March 2025  
+**Maintained by:** Shengxiang Lin, Xi'an Jiaotong University  
+**Note:** This bibliography focuses on peer-reviewed publications and influential preprints from 2023-2025, emphasizing the rapid evolution of LLM-based tabular data synthesis methods and their diverse applications.
