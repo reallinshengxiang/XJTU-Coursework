@@ -28,7 +28,7 @@
 |---|---|---|---|
 |*GReaT*|**GReaT: A generative model for realistic tabular data**|arXiv 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2308.01785) [![Github](https://img.shields.io/github/stars/tabularis-ai/be_great?style=social&label=Github)](https://github.com/tabularis-ai/be_great)|
 |*TabuLa*|**TabuLa: Harnessing Language Models for Tabular Data Synthesis**|arXiv 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2310.12746) [![Github](https://img.shields.io/github/stars/zhao-zilong/Tabula?style=social&label=Github)](https://github.com/zhao-zilong/Tabula)|
-|*TabMT*|**TabMT: Masked Table Pre-training for Versatile Tabular Tasks**|NeurIPS 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2311.02447)|
+|*TabMT*|**TabMT: Generating tabular data with masked transformers**|NeurIPS 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2312.06089) [![Github](https://img.shields.io/github/stars/Cher-er/TabMT?style=social&label=Github)](https://github.com/Cher-er/TabMT)|
 |*TAPTAP*|**Generative Table Pre-training Empowers Models for Tabular Prediction**|EMNLP 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2305.09696) [![Github](https://img.shields.io/github/stars/ZhangTP1996/TapTap?style=social&label=Github)](https://github.com/ZhangTP1996/TapTap)|
 |*REaLTabFormer*|**REaLTabFormer: Generating Realistic Relational and Tabular Data using Transformers**|arXiv 2023|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2302.02041) [![Github](https://img.shields.io/github/stars/worldbank/REaLTabFormer?style=social&label=Github)](https://github.com/worldbank/REaLTabFormer)|
 ### 2.2 Advanced Prompt-Based Methods
@@ -79,7 +79,7 @@
 
 |Method|Paper Title|Published At|Link|
 |---|---|---|---|
-|*SampleLLM*|**SampleLLM: Optimizing Tabular Data Synthesis in Recommendations**|WWW 2025|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2501.16125)|
+| *SampleLLM* | **SampleLLM: Optimizing Tabular Data Synthesis in Recommendations** | WWW 2025 | [![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2501.16125) [![Github](https://img.shields.io/github/stars/Gaojingtong/SampleLLM?style=social&label=Github)](https://github.com/Gaojingtong/SampleLLM)|
 |*DiffuRec*|**DiffuRec: A Diffusion Model for Sequential Recommendation**|ACM TOIS 2024|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2304.00686) [![Github](https://img.shields.io/github/stars/WHUIR/DiffuRec?style=social&label=Github)](https://github.com/WHUIR/DiffuRec)|
 |*PrivRec*|**Privacy-Preserving Sequential Recommendation with Collaborative Confusion**|ACM TOIS 2025|[![Paper](https://img.shields.io/badge/Paper-blue)](https://arxiv.org/abs/2401.04423) [![Github](https://img.shields.io/github/stars/weiwang0927/CLOUD?style=social&label=Github)](https://github.com/weiwang0927/CLOUD)|
 ## 5. Evaluation & Benchmarking
