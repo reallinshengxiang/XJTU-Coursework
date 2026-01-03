@@ -103,8 +103,6 @@
 
 ## Citation
 
-如果您在研究中使用了这份文献列表，请引用我们的综述论文：
-
 ```bibtex
 @article{lin2025generating,
   title={Generating Synthetic Tabular Data Using Large Language Models: A Review of Technical Frontiers, Applications, and Challenges},
