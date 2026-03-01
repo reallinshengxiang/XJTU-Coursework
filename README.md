@@ -34,6 +34,7 @@ This repository archives my coursework, including labs, homework, and projects, 
 |25summer|PRAC400205|[Huawei Software Boot Camp](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Huawei-Software-Boot-Camp)|      
 |25fall|COMP550105|[Fundamentals of Optimization Methods](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Fundamentals-of-Optimization-Methods)|   
 |25fall|COMP551705|[Data Warehouse and Data Mining](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Data-Warehouse-and-Data-Mining)|  
+|25fall|COMP462405|[Network and Information Security](https://github.com/Shengxiang-Lin/XJTU-Coursework/tree/Network-and-Information-Security)|  
 ---
 
 ### ℹ️ Note on Repository Structure
